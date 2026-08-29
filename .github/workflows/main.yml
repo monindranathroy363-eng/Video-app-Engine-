@@ -1,0 +1,42 @@
+name: Build Android APK
+on:
+  push:
+    paths:
+      - 'app_config.json' # এই ফাইলটি আপডেট হলেই অ্যাপ তৈরি শুরু হবে
+  workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Clone Master App Template
+        run: |
+          # এখানে আমরা আমাদের মোবাইল অ্যাপের মাস্টার ফ্লাটার টেমপ্লেটটি ক্লোন করছি
+          git clone https://github.com master_app
+          cp app_config.json master_app/assets/cfg/ || true
+
+      - name: Build APK
+        run: |
+          echo "মোবাইল অ্যাপ তৈরি করা হচ্ছে..."
+          # ফ্লাটার কোড কম্পাইল করে আসল .apk তৈরি করার কমান্ড
+          # cd master_app && flutter build apk --release
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-ai-video-app
+          path: app_config.json # আপাতত আমরা টেস্ট করার জন্য এই ফাইলটিই আউটপুট হিসেবে ডাউনলোডের জন্য রেডি রাখছি
