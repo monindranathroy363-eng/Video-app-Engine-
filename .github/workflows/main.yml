@@ -28,7 +28,8 @@ jobs:
       - name: Clone Master App Template
         run: |
           # এখানে আমরা আমাদের মোবাইল অ্যাপের মাস্টার ফ্লাটার টেমপ্লেটটি ক্লোন করছি
-          git clone https://github.com master_app
+          git git clone https://github.com master_app
+
           cp app_config.json master_app/assets/cfg/ || true
 
       - name: Build APK
