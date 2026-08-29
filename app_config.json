@@ -1,0 +1,13 @@
+{
+  "app_name": "CineFlix",
+  "layout_style": "netflix-slider",
+  "theme": "dark",
+  "primary_color": "#E50914",
+  "features": {
+    "comments": false,
+    "likes": true,
+    "user_profiles": true,
+    "live_streaming": false,
+    "monetization": "subscription"
+  }
+}
