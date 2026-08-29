@@ -4,6 +4,8 @@ on:
     paths:
       - 'app_config.json' # এই ফাইলটি আপডেট হলেই অ্যাপ তৈরি শুরু হবে
   workflow_dispatch: # ম্যানুয়ালি রান করার জন্য
+permissions:
+  contents: read
 
 jobs:
   build:
