@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নাটকফ্লিক্স - অসীমহীন বিনোদন</title>
+    <title>নাটকফ্লিক্স - প্রিমিয়াম ওটিটি প্ল্যাটফর্ম</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Hind Siliguri for Bengali -->
+    <!-- Google Fonts: Hind Siliguri & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <script>
         tailwind.config = {
@@ -22,572 +22,571 @@
                         brand: {
                             red: '#E50914',
                             darkRed: '#B81D24',
-                            dark: '#0B0B0E',
-                            card: '#12131A',
-                            border: '#232530'
+                            darkBg: '#0B0B0E',
+                            cardBg: '#14141A',
+                            navBg: '#0F0F13',
+                            accent: '#FF2E37'
                         }
                     },
                     fontFamily: {
-                        sans: ['Hind Siliguri', 'sans-serif'],
+                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
+
     <style>
-        /* Custom scrollbar hiding for horizontal scroll components */
-        .no-scrollbar::-webkit-scrollbar {
+        /* Custom Luxury Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0B0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #262630;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E50914;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
-        .no-scrollbar {
+        .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
-        /* Custom Glowing Effect */
         .glow-red {
-            box-shadow: 0 0 25px -5px rgba(229, 9, 20, 0.5);
+            box-shadow: 0 0 25px -5px rgba(229, 9, 20, 0.4);
         }
-        .glow-card:hover {
-            box-shadow: 0 10px 30px -10px rgba(229, 9, 20, 0.3);
+        .glow-red-sm {
+            box-shadow: 0 0 12px -2px rgba(229, 9, 20, 0.5);
         }
     </style>
 </head>
-<body class="bg-brand-dark text-gray-100 font-sans antialiased selection:bg-brand-red selection:text-white">
+<body class="bg-brand-darkBg text-gray-100 font-sans antialiased selection:bg-brand-red selection:text-white min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navigation Bar -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-gradient-to-b from-black/95 via-black/70 to-transparent backdrop-blur-md border-b border-white/5">
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 bg-brand-navBg/90 backdrop-blur-md border-b border-white/5 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Left Section: Logo & Nav Links -->
-                <div class="flex items-center gap-8">
+                
+                <!-- Brand Logo & Main Nav -->
+                <div class="flex items-center space-x-8">
                     <!-- Logo -->
-                    <a href="#" class="flex items-center gap-2 group">
-                        <span class="text-3xl font-extrabold tracking-wider text-brand-red drop-shadow-[0_2px_10px_rgba(229,9,20,0.8)]">
-                            নাটক<span class="text-white font-light">ফ্লিক্স</span>
+                    <a href="#" class="flex items-center space-x-2 group">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-darkRed to-brand-red flex items-center justify-center shadow-lg shadow-brand-red/30 group-hover:scale-105 transition-transform duration-300">
+                            <i class="fa-solid font-black fa-play text-white text-lg ml-0.5"></i>
+                        </div>
+                        <span class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                            <span class="text-white">নাটক</span><span class="text-brand-red drop-shadow-md">ফ্লিক্স</span>
                         </span>
                     </a>
 
-                    <!-- Desktop Navigation Links -->
-                    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-300">
-                        <a href="#" class="text-white font-semibold hover:text-brand-red transition">হোম</a>
-                        <a href="#" class="hover:text-brand-red transition">নাটক</a>
-                        <a href="#" class="hover:text-brand-red transition">সিনেমা</a>
-                        <a href="#" class="hover:text-brand-red transition">ওয়েব সিরিজ</a>
-                        <a href="#" class="hover:text-brand-red transition">জনপ্রিয়</a>
-                        <a href="#" class="hover:text-brand-red transition">আমার তালিকা</a>
+                    <!-- Desktop Nav Links -->
+                    <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                        <a href="#" class="text-white hover:text-brand-red transition-colors flex items-center space-x-1.5 active">
+                            <i class="fa-solid fa-house text-xs text-brand-red"></i>
+                            <span>হোম</span>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">নাটক</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">জনপ্রিয় মুভি</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">ওয়েব সিরিজ</a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-1">
+                            <span>ক্যাটাগরি</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-gray-400"></i>
+                        </a>
                     </nav>
                 </div>
 
-                <!-- Right Section: Search, Notifications & Profile -->
-                <div class="flex items-center gap-5">
-                    <!-- Search Bar (Desktop) -->
-                    <div class="relative hidden sm:block">
-                        <input type="text" placeholder="নাটক, সিনেমা বা অভিনেতা খুঁজুন..." 
-                               class="bg-black/60 border border-white/15 text-xs text-white rounded-full py-2 pl-9 pr-4 w-48 lg:w-64 focus:outline-none focus:border-brand-red focus:w-72 transition-all duration-300 placeholder-gray-400">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-xs text-gray-400"></i>
+                <!-- Search Bar & User Actions -->
+                <div class="flex items-center space-x-4 sm:space-x-6">
+                    
+                    <!-- Search Input -->
+                    <div class="relative hidden sm:block w-48 md:w-64">
+                        <input type="text" placeholder="নাটক বা মুভি খুঁজুন..." class="w-full bg-[#1A1A22] text-sm text-gray-200 placeholder-gray-500 rounded-full py-2.5 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-red/50 border border-white/10 transition-all">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                     </div>
 
-                    <!-- Notification Button -->
-                    <button class="relative p-2 text-gray-300 hover:text-white transition rounded-full hover:bg-white/10">
-                        <i class="fa-regular fa-bell text-lg"></i>
-                        <span class="absolute top-1 right-1 w-2 h-2 bg-brand-red rounded-full ring-2 ring-brand-dark"></span>
+                    <!-- Search Icon Mobile -->
+                    <button class="sm:hidden text-gray-300 hover:text-white p-2">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+
+                    <!-- Notification Bell -->
+                    <button class="relative p-2 text-gray-300 hover:text-white transition-colors">
+                        <i class="fa-regular fa-bell text-xl"></i>
+                        <span class="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-brand-red rounded-full ring-2 ring-brand-navBg animate-pulse"></span>
                     </button>
 
                     <!-- User Profile Dropdown -->
-                    <div class="flex items-center gap-3 border-l border-white/10 pl-4">
-                        <div class="relative group cursor-pointer">
-                            <div class="flex items-center gap-2">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
-                                     alt="Profile" class="w-9 h-9 rounded-md object-cover ring-2 ring-brand-red/50 group-hover:ring-brand-red transition">
-                                <i class="fa-solid fa-chevron-down text-xs text-gray-400 group-hover:text-white transition"></i>
-                            </div>
+                    <div class="flex items-center space-x-3 pl-2 border-l border-white/10">
+                        <div class="relative cursor-pointer group">
+                            <img class="w-10 h-10 rounded-full object-cover ring-2 ring-brand-red/60 group-hover:ring-brand-red transition-all" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256" alt="User Profile">
+                            <div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-brand-navBg rounded-full"></div>
                         </div>
                     </div>
-
-                    <!-- Mobile Menu Button -->
-                    <button class="md:hidden p-2 text-gray-300 hover:text-white">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
                 </div>
+
             </div>
         </div>
     </header>
 
-    <!-- Main Hero Banner Section -->
-    <section class="relative w-full h-[85vh] min-h-[550px] max-h-[800px] flex items-end pb-16 lg:pb-24">
-        <!-- Background Banner Image with Gradients -->
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80" 
-                 alt="Hero Banner" class="w-full h-full object-cover object-center scale-105 animate-pulse duration-1000 opacity-60">
-            <!-- Darkness Overlay Gradients -->
-            <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/60 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/80 to-transparent w-full md:w-3/4"></div>
-            <div class="absolute inset-0 bg-black/30"></div>
-        </div>
 
-        <!-- Hero Content -->
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="max-w-2xl space-y-4 sm:space-y-5">
-                <!-- Badges -->
-                <div class="flex items-center gap-3 text-xs font-semibold tracking-wider">
-                    <span class="bg-brand-red text-white px-2.5 py-1 rounded shadow-md uppercase">বিশেষ নাটক</span>
-                    <span class="bg-white/10 backdrop-blur-md text-white border border-white/20 px-2.5 py-1 rounded">৪ কে আল্ট্রা এইচডি</span>
-                    <span class="text-amber-400 flex items-center gap-1 font-bold">
-                        <i class="fa-solid fa-star text-xs"></i> ৯.৫
-                    </span>
+    <!-- MAIN CONTENT BODY -->
+    <main class="flex-grow">
+        
+        <!-- HERO VIDEO PLAYER BANNER SECTION -->
+        <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-4">
+            <div class="relative bg-brand-cardBg rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+                
+                <!-- Responsive Video Player Container -->
+                <div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden group">
+                    
+                    <!-- HTML5 Video Player -->
+                    <video id="mainOttPlayer" class="w-full h-full object-cover" controls poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=1920">
+                        <!-- Standard Fallback Sample Video + Standard Target Link Configured -->
+                        <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                        <source src="https://googleapis.com" type="video/mp4">
+                        আপনার ব্রাউজারটি ভিডিও প্লেয়ার সাপোর্ট করছে না।
+                    </video>
+
+                    <!-- Custom Overlay Header Info (Hidden when video plays) -->
+                    <div class="absolute top-4 left-4 z-10 pointer-events-none flex items-center space-x-2">
+                        <span class="bg-brand-red text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
+                            <i class="fa-solid fa-fire mr-1"></i> এক্সক্লুসিভ
+                        </span>
+                        <span class="bg-black/60 backdrop-blur-md text-gray-200 text-xs px-3 py-1 rounded-full font-medium border border-white/10">
+                            HD 1080p
+                        </span>
+                    </div>
+
                 </div>
 
-                <!-- Title -->
-                <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-none drop-shadow-md">
-                    মায়াজাল: <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">শেষ অধ্যায়</span>
-                </h1>
+                <!-- Video Metadata Info Bar -->
+                <div class="p-4 sm:p-6 bg-gradient-to-t from-brand-cardBg via-brand-cardBg to-[#181820] flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-1">
+                            <span class="text-amber-400 text-sm font-semibold flex items-center">
+                                <i class="fa-solid fa-star mr-1"></i> 9.8/10
+                            </span>
+                            <span class="text-gray-400 text-sm">• 2024</span>
+                            <span class="text-gray-400 text-sm">• ২ ঘণ্টা ১৫ মিনিট</span>
+                            <span class="bg-white/10 text-gray-300 text-[11px] px-2 py-0.5 rounded">16+</span>
+                        </div>
+                        <h1 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">
+                            ব্যাচেলর পয়েন্ট - স্পেশাল ধামাকা পর্ব
+                        </h1>
+                        <p class="text-gray-400 text-sm mt-1 max-w-3xl line-clamp-2">
+                            রোমাঞ্চকর গল্প ও দারুণ কমেডিতে ভরা নাটকফ্লিক্সের আজকের বিশেষ আকর্ষণ। সাবস্ক্রাইব করুন এবং উপভোগ করুন প্রিমিয়াম সব নাটক ও সিনেমা বাংলা ভাষায়।
+                        </p>
+                    </div>
 
-                <!-- Short Info / Meta -->
-                <div class="flex items-center gap-4 text-xs sm:text-sm text-gray-300 font-medium">
-                    <span class="text-green-400">৯৮% ম্যাচ</span>
-                    <span>২০২৪</span>
-                    <span class="border border-gray-600 px-1.5 py-0.5 rounded text-[10px]">১৬+</span>
-                    <span>১ সিজন</span>
-                    <span class="text-gray-400">ড্রামা • রোমান্টিক • থ্রিলার</span>
+                    <!-- Action Buttons -->
+                    <div class="flex items-center space-x-3 shrink-0">
+                        <button class="bg-brand-red hover:bg-brand-darkRed text-white px-6 py-3 rounded-xl font-bold flex items-center space-x-2 shadow-lg shadow-brand-red/30 transition-all hover:scale-105">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>মাই লিস্ট</span>
+                        </button>
+                        <button class="bg-white/10 hover:bg-white/20 text-white px-4 py-3 rounded-xl font-semibold border border-white/10 transition-all">
+                            <i class="fa-solid fa-share-nodes"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Synopsis -->
-                <p class="text-gray-300 text-sm sm:text-base line-clamp-3 leading-relaxed max-w-xl">
-                    একটি শহরের রহস্যময় ঘটনার আড়ালে লুকিয়ে থাকা দুই হৃদয়ের টানাপোড়েন। ভালোবাসা, বিশ্বাসঘাতকতা এবং অপ্রত্যাশিত কিছু সত্যের উন্মোচন নিয়ে নির্মিত বছরের সবচেয়ে আলোচিত মেগা নাটক।
-                </p>
+            </div>
+        </section>
 
-                <!-- CTA Buttons -->
-                <div class="flex flex-wrap items-center gap-4 pt-3">
-                    <button class="bg-brand-red hover:bg-brand-darkRed text-white px-7 py-3.5 rounded-xl font-bold flex items-center gap-3 transition-all duration-300 transform hover:scale-105 glow-red text-base">
-                        <i class="fa-solid fa-play text-lg"></i> এখনই দেখুন
-                    </button>
-                    <button class="bg-white/15 hover:bg-white/25 backdrop-blur-md text-white border border-white/20 px-6 py-3.5 rounded-xl font-semibold flex items-center gap-2.5 transition-all duration-300">
-                        <i class="fa-solid fa-circle-info text-lg"></i> বিস্তারিত তথ্য
-                    </button>
-                    <button class="w-12 h-12 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 flex items-center justify-center text-white transition">
-                        <i class="fa-solid fa-plus text-lg"></i>
-                    </button>
+
+        <!-- SPONSORED ADVERTISEMENT SLOT 1 (BELOW MAIN PLAYER) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-6">
+            <div class="relative bg-[#121218] border border-red-500/30 rounded-2xl p-4 sm:p-6 text-center shadow-xl overflow-hidden">
+                <!-- Neon Ad Badge -->
+                <div class="absolute top-3 left-3 flex items-center space-x-1.5 bg-red-950/80 border border-red-500/50 text-brand-red text-[10px] font-bold px-2.5 py-1 rounded-md tracking-widest uppercase shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
+                    <span>ADVERTISEMENT / বিজ্ঞাপন</span>
+                </div>
+
+                <!-- Ad Holder Container -->
+                <div class="mt-4 py-8 px-4 border-2 border-dashed border-gray-800 rounded-xl flex flex-col items-center justify-center bg-[#0B0B0E]/80 min-h-[120px]">
+                    <!-- GOOGLE ADSENSE CODE HERE -->
+                    <div class="flex items-center space-x-2 text-brand-red font-semibold mb-2 text-sm">
+                        <i class="fa-solid fa-rectangle-ad text-lg"></i>
+                        <span>Google AdSense Slot #1 (Header Main Leaderboard)</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-400 max-w-xl">
+                        <!-- GOOGLE ADSENSE CODE HERE -->
+                        Your Google Ads will display inside this responsive banner slot to generate income.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Content Rows Container -->
-    <main class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 -mt-10 pb-20">
 
-        <!-- Row 1: Trending Dramas (ট্রেন্ডিং নাটক) -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-6 bg-brand-red rounded-full"></div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-wide">ট্রেন্ডিং নাটক</h2>
+        <!-- CONTENT ROW 1: টপ নাটক (TOP DRAMAS) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center space-x-3">
+                    <div class="w-1.5 h-7 bg-brand-red rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-white tracking-wide">টপ নাটক</h2>
                 </div>
-                <a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-brand-red font-medium transition flex items-center gap-1">
-                    সবগুলো দেখুন <i class="fa-solid fa-chevron-right text-xs"></i>
+                <a href="#" class="text-sm font-semibold text-brand-red hover:text-white transition-colors flex items-center space-x-1">
+                    <span>সব দেখুন</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
                 </a>
             </div>
 
-            <!-- Horizontal Scroll Cards -->
-            <div class="flex items-center gap-4 overflow-x-auto no-scrollbar py-3 px-1 scroll-smooth">
+            <!-- Horizontal Scroll Row / Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
                 
                 <!-- Card 1 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-[10px] font-bold px-2 py-0.5 rounded text-white shadow">নতুন</span>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">ব্যাচেলর ডায়েরিজ</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.১</span>
-                                <span>২০২৪</span>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&q=80&w=600" alt="নাটক ১" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-2 right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">নতুন</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">শেষ বিকেলের আলো</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৪</p>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">নীল ক্যানভাস</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৮</span>
-                                <span>২০২৪</span>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?auto=format&fit=crop&q=80&w=600" alt="নাটক ২" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-2 right-2 bg-amber-500 text-black text-[10px] font-bold px-2 py-0.5 rounded shadow">টপ ১০</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">অবশেষে তুমি ও আমি</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৪</p>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <span class="absolute top-2 left-2 bg-white/20 backdrop-blur-md text-[10px] font-bold px-2 py-0.5 rounded text-white border border-white/20">HD</span>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">অপেক্ষার শেষ প্রহর</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.৪</span>
-                                <span>২০২৩</span>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&q=80&w=600" alt="নাটক ৩" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">শহরের মিষ্টি প্রেম</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৩</p>
                     </div>
                 </div>
 
                 <!-- Card 4 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">শহরের শেষ ক্যাফে</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৫</span>
-                                <span>২০২৪</span>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&q=80&w=600" alt="নাটক ৪" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-2 right-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">ফ্রি</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">গ্রামের দিনগুলো</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৪</p>
                     </div>
                 </div>
 
                 <!-- Card 5 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-[10px] font-bold px-2 py-0.5 rounded text-white shadow">নতুন</span>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">অদৃশ্য দেয়াল</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.০</span>
-                                <span>২০২৪</span>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=600" alt="নাটক ৫" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">দূরত্বের গল্প</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৪</p>
                     </div>
                 </div>
 
                 <!-- Card 6 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1574267432553-4b4628081c31?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">মেঘের ছায়া</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৭</span>
-                                <span>২০২৩</span>
-                            </div>
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=600" alt="নাটক ৬" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-2 right-2 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded shadow">ট্রেন্ডিং</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
                     </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">আয়না ঘর</h3>
+                        <p class="text-gray-400 text-xs mt-1">নাটক • ২০২৪</p>
+                    </div>
                 </div>
+
             </div>
         </section>
 
-        <!-- Row 2: Popular Movies & Web Series (জনপ্রিয় সিনেমা ও ওয়েব সিরিজ) -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-6 bg-brand-red rounded-full"></div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-wide">ব্লকবাস্টার ওয়েব সিরিজ</h2>
+
+        <!-- CONTENT ROW 2: জনপ্রিয় মুভি (POPULAR MOVIES) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
+            <div class="flex items-center justify-between mb-5">
+                <div class="flex items-center space-x-3">
+                    <div class="w-1.5 h-7 bg-brand-red rounded-full"></div>
+                    <h2 class="text-2xl font-bold text-white tracking-wide">জনপ্রিয় মুভি</h2>
                 </div>
-                <a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-brand-red font-medium transition flex items-center gap-1">
-                    সবগুলো দেখুন <i class="fa-solid fa-chevron-right text-xs"></i>
+                <a href="#" class="text-sm font-semibold text-brand-red hover:text-white transition-colors flex items-center space-x-1">
+                    <span>সব দেখুন</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
                 </a>
             </div>
 
-            <!-- Horizontal Scroll Cards -->
-            <div class="flex items-center gap-4 overflow-x-auto no-scrollbar py-3 px-1 scroll-smooth">
+            <!-- Horizontal Grid -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
                 
-                <!-- Card 1 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Series Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-[10px] font-bold px-2 py-0.5 rounded text-white shadow">TOP 10</span>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">ডার্ক নাইটমেয়ার</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.৭</span>
-                                <span>৩ সিজন</span>
+                <!-- Movie Card 1 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1533928298208-27ff66555d8d?auto=format&fit=crop&q=80&w=600" alt="মুভি ১" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 9.5
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">তুফান</h3>
+                        <p class="text-gray-400 text-xs mt-1">অ্যাকশন • ২ ঘণ্টা ২০ মি</p>
                     </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80" alt="Series Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">সিনেমাটিক ড্রিমস</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.২</span>
-                                <span>১ সিজন</span>
+                <!-- Movie Card 2 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518676599625-581505cdd07e?auto=format&fit=crop&q=80&w=600" alt="মুভি ২" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 8.9
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">প্রিয়তমা</h3>
+                        <p class="text-gray-400 text-xs mt-1">রোমান্টিক • ২ ঘণ্টা ১৫ মি</p>
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=600&q=80" alt="Series Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">ছায়াবৃত্ত</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৯</span>
-                                <span>২ সিজন</span>
+                <!-- Movie Card 3 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&q=80&w=600" alt="মুভি ৩" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 9.1
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">হাওয়া</h3>
+                        <p class="text-gray-400 text-xs mt-1">মিস্ট্রি • ২ ঘণ্টা ১০ মি</p>
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?auto=format&fit=crop&w=600&q=80" alt="Series Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-[10px] font-bold px-2 py-0.5 rounded text-white shadow">নতুন</span>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">দ্য রেড রুম</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.৩</span>
-                                <span>১ সিজন</span>
+                <!-- Movie Card 4 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=600" alt="মুভি ৪" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 8.7
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">পরাণ</h3>
+                        <p class="text-gray-400 text-xs mt-1">ড্রামা • ২ ঘণ্টা ২৫ মি</p>
                     </div>
                 </div>
 
-                <!-- Card 5 -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80" alt="Series Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">লাইটস ক্যামেরা ডিরেকশন</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৬</span>
-                                <span>১ সিজন</span>
-                            </div>
+                <!-- Movie Card 5 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1440404653325-ab127d49abc1?auto=format&fit=crop&q=80&w=600" alt="মুভি ৫" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 9.3
                         </div>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                            <div class="w-12 h-12 bg-brand-red/90 text-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play text-lg ml-1"></i>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
                             </div>
                         </div>
                     </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">রেহানা মরিয়ম নূর</h3>
+                        <p class="text-gray-400 text-xs mt-1">থ্রিলার • ১ ঘণ্টা forty-five মি</p>
+                    </div>
                 </div>
+
+                <!-- Movie Card 6 -->
+                <div class="group relative bg-brand-cardBg rounded-xl overflow-hidden border border-white/5 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-brand-red/10">
+                    <div class="aspect-[2/3] relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&q=80&w=600" alt="মুভি ৬" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-black/60 backdrop-blur-md text-amber-400 text-xs font-bold px-2 py-0.5 rounded flex items-center">
+                            <i class="fa-solid fa-star text-[10px] mr-1"></i> 9.0
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/50 transform scale-75 group-hover:scale-100 transition-transform">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h3 class="text-white font-bold text-sm truncate group-hover:text-brand-red transition-colors">অপারেশন সুন্দরবন</h3>
+                        <p class="text-gray-400 text-xs mt-1">অ্যাকশন • ২ ঘণ্টা ৩০ মি</p>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Category Banner Showcase -->
-        <section class="relative rounded-2xl overflow-hidden border border-white/10 p-8 sm:p-12 bg-gradient-to-r from-red-950/80 via-brand-dark to-black">
-            <div class="relative z-10 max-w-xl space-y-4">
-                <span class="text-brand-red font-bold tracking-widest text-xs uppercase">প্রিমিয়াম সাবস্ক্রিপশন</span>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white leading-tight">আপনার পছন্দের সব বাংলা নাটক বিজ্ঞাপন ছাড়া দেখুন!</h2>
-                <p class="text-gray-300 text-sm">মাত্র ১৯৯ টাকায় মাসজুড়ে উপভোগ করুন আল্ট্রা এইচডি কোয়ালিটিতে হাজারো নাটক ও সিনেমা।</p>
-                <div class="pt-2">
-                    <button class="bg-brand-red hover:bg-brand-darkRed text-white px-8 py-3 rounded-xl font-bold transition duration-300 glow-red">
-                        প্রিমিয়াম চালু করুন
-                    </button>
-                </div>
-            </div>
-            <div class="absolute -right-10 -bottom-10 opacity-20 lg:opacity-40 pointer-events-none">
-                <i class="fa-solid fa-film text-[240px] text-brand-red"></i>
-            </div>
-        </section>
 
-        <!-- Row 3: Romantic Specials (রোমান্টিক ও ফ্যামিলি স্পেশাল) -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-6 bg-brand-red rounded-full"></div>
-                    <h2 class="text-xl sm:text-2xl font-bold text-white tracking-wide">রোমান্টিক ও ফ্যামিলি স্পেশাল</h2>
-                </div>
-                <a href="#" class="text-xs sm:text-sm text-gray-400 hover:text-brand-red font-medium transition flex items-center gap-1">
-                    সবগুলো দেখুন <i class="fa-solid fa-chevron-right text-xs"></i>
-                </a>
-            </div>
-
-            <div class="flex items-center gap-4 overflow-x-auto no-scrollbar py-3 px-1 scroll-smooth">
-                <!-- Card -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">ভালোবাসার সমীকরণ</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.০</span>
-                                <span>২০২৪</span>
-                            </div>
-                        </div>
+        <!-- SECONDARY ADVERTISEMENT SLOT 2 (FOOTER BANNER AREA) -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-12">
+            <div class="relative bg-gradient-to-r from-[#14141A] via-[#1A1A24] to-[#14141A] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden text-center">
+                <!-- Ad Header Badge -->
+                <div class="flex items-center justify-between mb-3 border-b border-gray-800/80 pb-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                        <span class="text-xs font-bold text-gray-400 tracking-wider uppercase">SPONSORED ADVERTISEMENT / বিজ্ঞাপন স্লট</span>
                     </div>
+                    <span class="text-[11px] text-gray-500">Google AdSense Ready</span>
                 </div>
 
-                <!-- Card -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">একাই ১০০</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৯</span>
-                                <span>২০২৪</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">সুখের ঠিকানা</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৯.৪</span>
-                                <span>২০২৩</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card -->
-                <div class="flex-none w-44 sm:w-52 group cursor-pointer">
-                    <div class="relative aspect-[2/3] rounded-xl overflow-hidden bg-brand-card border border-brand-border transition-all duration-300 group-hover:scale-105 group-hover:border-brand-red/50 glow-card">
-                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Drama Poster" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition"></div>
-                        <div class="absolute bottom-0 left-0 right-0 p-3 space-y-1">
-                            <h3 class="font-bold text-white text-base truncate group-hover:text-brand-red transition">মনের আকাশ</h3>
-                            <div class="flex items-center justify-between text-xs text-gray-300">
-                                <span class="text-amber-400 font-semibold"><i class="fa-solid fa-star text-[10px]"></i> ৮.৭</span>
-                                <span>২০২৪</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Ad Placeholder Container -->
+                <div class="py-10 px-4 border border-gray-800 rounded-xl bg-[#09090C] flex flex-col items-center justify-center min-h-[140px]">
+                    <!-- GOOGLE ADSENSE CODE HERE -->
+                    <p class="text-xs text-brand-red font-bold uppercase tracking-widest mb-1.5">Secondary Banner Ad Unit #2</p>
+                    <p class="text-sm text-gray-300 font-medium max-w-lg">
+                        <!-- GOOGLE ADSENSE CODE HERE -->
+                        Your Google Ads will display inside this responsive banner slot to generate income.
+                    </p>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Footer Area -->
-    <footer class="bg-black/80 border-t border-white/10 pt-16 pb-12 text-gray-400 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-            <!-- Footer Top -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="space-y-3">
-                    <h4 class="text-white font-semibold text-base">নেভিগেশন</h4>
-                    <ul class="space-y-2 text-xs sm:text-sm">
-                        <li><a href="#" class="hover:text-brand-red transition">হোম</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">নাটক</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">সিনেমা</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">ওয়েব সিরিজ</a></li>
-                    </ul>
-                </div>
 
-                <div class="space-y-3">
-                    <h4 class="text-white font-semibold text-base">সহায়তা</h4>
-                    <ul class="space-y-2 text-xs sm:text-sm">
-                        <li><a href="#" class="hover:text-brand-red transition">এফএকিউ (FAQ)</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">যোগাযোগ করুন</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">হেল্প সেন্টার</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">সাবস্ক্রিপশন প্ল্যান</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-3">
-                    <h4 class="text-white font-semibold text-base">নীতিমালা</h4>
-                    <ul class="space-y-2 text-xs sm:text-sm">
-                        <li><a href="#" class="hover:text-brand-red transition">ব্যবহারের শর্তাবলী</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">গোপনীয়তা নীতি</a></li>
-                        <li><a href="#" class="hover:text-brand-red transition">কুকিজ প্রেফারেন্স</a></li>
-                    </ul>
-                </div>
-
+    <!-- FOOTER -->
+    <footer class="bg-[#08080B] border-t border-white/5 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10 border-b border-white/5">
+                
+                <!-- Brand Info -->
                 <div class="space-y-4">
-                    <h4 class="text-white font-semibold text-base">সোশ্যাল মিডিয়া</h4>
-                    <div class="flex items-center gap-3">
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red hover:border-brand-red transition">
-                            <i class="fa-brands fa-facebook-f"></i>
+                    <a href="#" class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-brand-red flex items-center justify-center">
+                            <i class="fa-solid fa-play text-white text-sm ml-0.5"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">
+                            নাটক<span class="text-brand-red">ফ্লিক্স</span>
+                        </span>
+                    </a>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        নাটকফ্লিক্স বাংলাদেশের সেরা ওটিটি ভিডিও প্ল্যাটফর্ম। সব জনপ্রিয় বাংলা নাটক, সিনেমা এবং এক্সক্লুসিভ ওয়েব সিরিজ উপভোগ করুন যেকোনো সময়, যেকোনো জায়গা থেকে।
+                    </p>
+                    <!-- Social Icons -->
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-red text-gray-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-red text-gray-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-youtube text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-red text-gray-400 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-xs"></i></a>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 border-l-2 border-brand-red pl-2">ন্যাভিগেশন</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">হোম পেজ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">টপ নাটক</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">জনপ্রিয় মুভি</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">ওয়েব সিরিজ</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">নতুন রিলিজ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Links -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 border-l-2 border-brand-red pl-2">সহায়তা ও শর্তাবলী</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">হেল্প সেন্টার</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">সাবস্ক্রিপশন প্ল্যান</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">প্রাইভেসি পলিসি</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">ব্যবহারের শর্তাবলী</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">বিজ্ঞাপন দিন</a></li>
+                    </ul>
+                </div>
+
+                <!-- Apps Download -->
+                <div>
+                    <h4 class="text-white text-sm font-bold mb-4 border-l-2 border-brand-red pl-2">মোবাইল অ্যাপ</h4>
+                    <p class="text-xs text-gray-400 mb-3">আমাদের মোবাইল অ্যাপ ডাউনলোড করুন যেকোনো ডিভাইসে দেখার জন্য।</p>
+                    <div class="space-y-2">
+                        <a href="#" class="flex items-center space-x-3 bg-white/5 border border-white/10 hover:border-brand-red rounded-xl px-3 py-2 transition-all">
+                            <i class="fa-brands fa-google-play text-xl text-brand-red"></i>
+                            <div class="text-left">
+                                <p class="text-[9px] text-gray-400 uppercase">GET IT ON</p>
+                                <p class="text-xs font-bold text-white">Google Play</p>
+                            </div>
                         </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red hover:border-brand-red transition">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red hover:border-brand-red transition">
-                            <i class="fa-brands fa-instagram"></i>
+                        <a href="#" class="flex items-center space-x-3 bg-white/5 border border-white/10 hover:border-brand-red rounded-xl px-3 py-2 transition-all">
+                            <i class="fa-brands fa-apple text-xl text-white"></i>
+                            <div class="text-left">
+                                <p class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON THE</p>
+                                <p class="text-xs font-bold text-white">App Store</p>
+                            </div>
                         </a>
                     </div>
                 </div>
+
             </div>
 
-            <!-- Footer Bottom -->
-            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-                <p>&copy; ২০২৪ নাটকফ্লিক্স। সর্বস্বত্ব সংরক্ষিত।</p>
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-globe text-gray-400"></i>
-                    <select class="bg-black text-gray-300 border border-white/15 rounded px-2 py-1 text-xs focus:outline-none focus:border-brand-red">
-                        <option value="bn" selected>বাংলা</option>
-                        <option value="en">English</option>
-                    </select>
-                </div>
+            <!-- Bottom Copyright -->
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; ২০২৪ নাটকফ্লিক্স (Natokflix)। সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="mt-2 sm:mt-0 flex items-center space-x-1">
+                    <span>Designed for Premium Bengali Entertainment</span>
+                </p>
             </div>
         </div>
     </footer>
