@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATKFLIX PRO - Ultra OTT Video Platform</title>
+    <title>NATKFLIX PRO - Ultimate Video Platform</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & Montserrat -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,308 +14,350 @@
                     colors: {
                         brand: {
                             red: '#E50914',
-                            darkRed: '#B81D24',
-                            black: '#0A0A0C',
-                            surface: '#121216',
-                            card: '#1A1A22',
-                            border: '#2A2A36',
-                            accent: '#FF2E3B'
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            accent: '#00F0FF'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif']
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Scrollbar */
+        /* Custom Scrollbars */
         ::-webkit-scrollbar {
             width: 8px;
             height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #0A0A0C;
+            background: #0b0f17;
         }
         ::-webkit-scrollbar-thumb {
-            background: #2A2A36;
+            background: #1e293b;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #E50914;
-        }
-        
-        .glow-red {
-            box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
-        }
-        
-        .glow-pulse {
-            animation: pulse-glow 2s infinite;
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% {
-                box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 25px rgba(229, 9, 20, 0.8);
-                transform: scale(1.02);
-            }
-        }
-
-        .glass-panel {
-            background: rgba(26, 26, 34, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: #334155;
         }
     </style>
 </head>
-<body class="bg-brand-black text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white">
+<body class="bg-[#0B0F17] text-slate-100 font-sans min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 w-full glass-panel border-b border-brand-border/50 px-4 lg:px-8 py-3 flex items-center justify-between gap-4">
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 bg-[#0B0F17]/90 backdrop-blur-md border-b border-slate-800/80 px-4 lg:px-8 py-3 flex items-center justify-between">
         <!-- Brand Logo -->
-        <div class="flex items-center gap-6">
-            <a href="#" class="flex items-center gap-2 group">
-                <div class="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center font-display font-black text-white text-xl shadow-lg shadow-brand-red/30 group-hover:scale-105 transition-transform">
-                    N
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-display font-black text-xl lg:text-2xl tracking-wider text-white flex items-center gap-1">
-                        NATKFLIX <span class="text-brand-red text-xs px-1.5 py-0.5 rounded bg-brand-red/10 border border-brand-red/30 font-sans font-extrabold tracking-normal">PRO</span>
-                    </span>
-                </div>
-            </a>
-        </div>
-
-        <!-- Central Search Bar -->
-        <div class="hidden md:flex items-center flex-1 max-w-xl mx-4">
-            <div class="relative w-full">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                <input type="text" placeholder="Search movies, creators, videos, live streams..." class="w-full bg-brand-surface border border-brand-border rounded-full py-2.5 pl-11 pr-4 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="location.reload()">
+            <div class="bg-gradient-to-tr from-red-600 to-red-500 text-white font-black text-xl px-3 py-1 rounded-lg tracking-wider shadow-lg shadow-red-600/30">
+                NATKFLIX <span class="text-xs bg-black/40 px-1.5 py-0.5 rounded text-cyan-400 font-mono">PRO</span>
             </div>
         </div>
 
-        <!-- Navbar Right Actions -->
-        <div class="flex items-center gap-3">
-            <!-- PWA Install Shortcut Button (Flashing Animation) -->
-            <button onclick="triggerPWAInstall()" class="glow-pulse bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs md:text-sm px-3.5 py-2 rounded-xl flex items-center gap-2 transition-all cursor-pointer border border-purple-400/30">
-                <i class="fa-solid fa-mobile-screen-button text-base animate-bounce"></i>
-                <span class="hidden sm:inline">📲 Install App</span>
+        <!-- Desktop Action Navigation -->
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <button onclick="openModal('uploadModal')" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2 rounded-xl text-sm font-semibold transition border border-slate-700">
+                <span>📤</span>
+                <span class="hidden sm:inline">Upload Video</span>
             </button>
-
-            <!-- Visible Upload Video Button (Navbar Trigger) -->
-            <button onclick="openModal('uploadModal')" class="bg-brand-red hover:bg-brand-darkRed text-white font-bold text-xs md:text-sm px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-brand-red/25 cursor-pointer border border-brand-accent/40 active:scale-95">
-                <i class="fa-solid fa-cloud-arrow-up text-base"></i>
-                <span>📤 Upload Video</span>
+            <button onclick="handleMonetizationClick()" class="flex items-center space-x-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white px-3.5 py-2 rounded-xl text-sm font-semibold transition shadow-lg shadow-emerald-900/20">
+                <span>💰</span>
+                <span class="hidden sm:inline">Turn On Monetization</span>
             </button>
-
-            <!-- Secret Admin Button (Password: admin123) -->
-            <button onclick="openAdminAuth()" class="bg-brand-surface hover:bg-brand-card text-gray-300 hover:text-white p-2.5 rounded-xl border border-brand-border transition-all cursor-pointer relative group" title="Secret Admin Panel">
-                <i class="fa-solid fa-user-shield text-base text-amber-500"></i>
-                <span class="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-black text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-gray-800">Admin Panel</span>
+            <button onclick="triggerAppInstall()" class="animate-pulse flex items-center space-x-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-3.5 py-2 rounded-xl text-sm font-bold shadow-lg shadow-cyan-500/20">
+                <span>📲</span>
+                <span>Install App</span>
             </button>
-
-            <!-- User Profile Avatar -->
-            <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-red to-orange-500 p-0.5 cursor-pointer">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Avatar" class="w-full h-full rounded-[10px] object-cover">
-            </div>
+            <button onclick="openModal('adminModal')" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 p-2 sm:px-3 sm:py-2 rounded-xl text-sm font-semibold border border-slate-700 transition">
+                <span>🛠️</span>
+                <span class="hidden md:inline">Admin</span>
+            </button>
         </div>
     </header>
 
-    <!-- MAIN WRAPPER: Responsive 2-Column Layout -->
-    <main class="flex-1 max-w-[1800px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- Main Dynamic Content Container -->
+    <main class="flex-grow max-w-[1700px] w-full mx-auto p-4 lg:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <!-- LEFT COLUMN: MAIN PLAYER & DETAILS & REVENUE SPLIT (8/12 Desktop) -->
-        <section class="lg:col-span-8 flex flex-col gap-6">
-            
-            <!-- RAW YOUTUBE EMBED PLAYER -->
-            <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-brand-border/60 group">
-                <iframe id="mainPlayerFrame" 
-                        class="w-full h-full border-0" 
-                        src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&enablejsapi=1&rel=0" 
-                        title="NATKFLIX PRO Video Player" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        allowfullscreen>
+        <!-- Main Video Area (2 Cols on Large Screens) -->
+        <section class="lg:col-span-2 space-y-4">
+            <!-- Main Responsive Player Container -->
+            <div class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl border border-slate-800">
+                <iframe id="mainPlayer" class="w-full h-full border-0" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&enablejsapi=1" 
+                    title="NATKFLIX PRO Video Player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
                 </iframe>
             </div>
 
-            <!-- VIDEO INFO & ACTION BAR -->
-            <div class="bg-brand-surface p-5 rounded-2xl border border-brand-border flex flex-col gap-4">
-                <div class="flex flex-col gap-2">
-                    <div class="flex items-center gap-2">
-                        <span class="bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold px-2.5 py-0.5 rounded-full">4K ULTRA HD</span>
-                        <span class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-bolt mr-1"></i> MONETIZED (40/60)</span>
-                    </div>
-                    <h1 id="mainVideoTitle" class="text-xl md:text-2xl font-bold text-white tracking-tight">
-                        Rick Astley - Never Gonna Give You Up (Official Music Video) [4K Remastered]
-                    </h1>
-                </div>
+            <!-- Video Metadata & Interaction Bar -->
+            <div class="bg-[#151C28] p-5 rounded-2xl border border-slate-800/80 shadow-xl space-y-4">
+                <h1 id="videoTitle" class="text-xl md:text-2xl font-extrabold text-white tracking-tight">
+                    Rick Astley - Never Gonna Give You Up (Official Music Video)
+                </h1>
 
-                <!-- Stats + Action Buttons Bar -->
-                <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-brand-border/50">
-                    <div class="flex items-center gap-3 text-sm text-gray-400">
-                        <span><i class="fa-solid fa-eye text-brand-red mr-1.5"></i> 1,489,203,849 views</span>
-                        <span>•</span>
-                        <span>Oct 25, 2009</span>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="flex items-center flex-wrap gap-2">
-                        <!-- Like / Dislike Group -->
-                        <div class="flex items-center bg-brand-card rounded-xl border border-brand-border overflow-hidden">
-                            <button onclick="toggleLike(this)" class="px-4 py-2 text-sm font-semibold flex items-center gap-2 hover:bg-white/5 transition-colors border-r border-brand-border">
-                                <i class="fa-regular fa-thumbs-up text-base"></i>
-                                <span id="likeCount">4.8M</span>
-                            </button>
-                            <button onclick="showToast('Feedback recorded')" class="px-3 py-2 hover:bg-white/5 transition-colors text-gray-400 hover:text-white">
-                                <i class="fa-regular fa-thumbs-down"></i>
-                            </button>
+                <!-- Channel Header & Primary Action Buttons -->
+                <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-slate-800">
+                    <!-- Creator Info -->
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-red-600 to-cyan-500 p-0.5">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Creator Avatar" class="w-full h-full object-cover rounded-full">
                         </div>
-
-                        <!-- PROMINENT VISIBLE SHARE BUTTON -->
-                        <button onclick="openModal('shareModal')" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm px-4 py-2 rounded-xl flex items-center gap-2 transition-all shadow-md shadow-blue-500/20 active:scale-95 cursor-pointer">
-                            <i class="fa-solid fa-share-nodes text-base"></i>
-                            <span>🔗 Share Video</span>
+                        <div>
+                            <h3 class="font-bold text-white text-base leading-tight">NATKFLIX Creator</h3>
+                            <p id="subCountDisplay" class="text-xs text-slate-400 font-medium">5 Subscribers</p>
+                        </div>
+                        <button id="subscribeBtn" onclick="toggleSubscribe()" class="ml-2 bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all duration-200 shadow-lg shadow-red-600/30">
+                            Subscribe
                         </button>
+                    </div>
 
-                        <!-- Download / Save -->
-                        <button onclick="showToast('Downloading offline copy...')" class="bg-brand-card hover:bg-brand-border text-gray-200 text-sm font-semibold px-3.5 py-2 rounded-xl flex items-center gap-2 border border-brand-border transition-colors">
-                            <i class="fa-solid fa-download"></i>
-                            <span class="hidden sm:inline">Save</span>
+                    <!-- Engagement Buttons (Like, Share, Monetize) -->
+                    <div class="flex items-center space-x-2 sm:space-x-3">
+                        <button id="likeBtn" onclick="toggleLike()" class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold border border-slate-700 transition">
+                            <span id="likeIcon">👍</span>
+                            <span id="likeCount">1,240</span>
+                        </button>
+                        <button onclick="openModal('shareModal')" class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-xl text-sm font-semibold border border-slate-700 transition">
+                            <span>🔗</span>
+                            <span>Share</span>
+                            <span id="shareBadge" class="bg-cyan-900/80 text-cyan-300 text-xs px-2 py-0.5 rounded-full font-bold ml-1">14</span>
+                        </button>
+                        <button onclick="handleMonetizationClick()" class="hidden sm:flex items-center space-x-1.5 bg-emerald-950/60 hover:bg-emerald-900/60 text-emerald-400 border border-emerald-800/80 px-3.5 py-2 rounded-xl text-sm font-semibold transition">
+                            <span>💰</span>
+                            <span>Monetize</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- Channel Info Bar -->
-                <div class="flex items-center justify-between gap-4 pt-4 border-t border-brand-border/50">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=120&q=80" class="w-12 h-12 rounded-full object-cover border-2 border-brand-red" alt="Creator Profile">
-                        <div>
-                            <div class="flex items-center gap-1.5">
-                                <h3 id="mainChannelName" class="font-bold text-white">Rick Astley Official</h3>
-                                <i class="fa-solid fa-circle-check text-brand-red text-xs" title="Verified Creator"></i>
-                            </div>
-                            <p class="text-xs text-gray-400">4.12M Subscribers</p>
-                        </div>
-                    </div>
-                    <button onclick="toggleSubscribe(this)" class="bg-white hover:bg-gray-200 text-black font-extrabold text-sm px-5 py-2.5 rounded-xl transition-all shadow-lg active:scale-95">
-                        Subscribe
-                    </button>
-                </div>
-            </div>
-
-            <!-- REVENUE SPLIT SECTION (EXACT FIXED BUSINESS LOGIC) -->
-            <div class="bg-gradient-to-br from-brand-surface via-brand-card to-black p-6 rounded-2xl border border-brand-border relative overflow-hidden">
-                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-red/10 rounded-full blur-3xl pointer-events-none"></div>
-                
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-chart-pie text-brand-red text-lg"></i>
-                            <h2 class="text-lg font-bold text-white">Creator Revenue Split Model</h2>
-                        </div>
-                        <p class="text-xs text-gray-400 mt-1">Automated Smart Contract Distribution Logic (Exact Standard Standard Breakdown)</p>
-                    </div>
-                    <span class="self-start sm:self-auto text-xs bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-3 py-1 rounded-full font-mono font-semibold">
-                        <i class="fa-solid fa-lock text-[10px] mr-1"></i> VERIFIED RATIO
-                    </span>
-                </div>
-
-                <!-- Visual Bar Indicator -->
-                <div class="w-full h-4 bg-gray-800 rounded-full overflow-hidden flex p-0.5 border border-white/5 mb-6">
-                    <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-l-full relative group transition-all duration-500" style="width: 40%">
-                        <span class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 -translate-x-1/2 bg-black text-emerald-400 text-[10px] py-1 px-2 rounded border border-emerald-500/30 whitespace-nowrap">40% Creator Payout</span>
-                    </div>
-                    <div class="bg-gradient-to-r from-brand-red to-orange-600 h-full rounded-r-full relative group transition-all duration-500" style="width: 60%">
-                        <span class="absolute opacity-0 group-hover:opacity-100 -top-8 left-1/2 -translate-x-1/2 bg-black text-brand-red text-[10px] py-1 px-2 rounded border border-brand-red/30 whitespace-nowrap">60% Platform Maintenance</span>
-                    </div>
-                </div>
-
-                <!-- Dual Cards for Split -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Creator Share (40%) -->
-                    <div class="bg-black/50 p-4 rounded-xl border border-emerald-500/20 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-emerald-400 font-bold tracking-wider uppercase">Creator Share</p>
-                            <p class="text-2xl font-black text-white mt-1">40%</p>
-                            <p class="text-xs text-gray-400 mt-0.5">Direct Payout: 40%</p>
-                        </div>
-                        <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 border border-emerald-500/30">
-                            <i class="fa-solid fa-wallet text-xl"></i>
-                        </div>
-                    </div>
-
-                    <!-- Platform Share (60%) -->
-                    <div class="bg-black/50 p-4 rounded-xl border border-brand-red/20 flex items-center justify-between">
-                        <div>
-                            <p class="text-xs text-brand-red font-bold tracking-wider uppercase">Platform Share</p>
-                            <p class="text-2xl font-black text-white mt-1">60%</p>
-                            <p class="text-xs text-gray-400 mt-0.5">Maintenance Fund: 60%</p>
-                        </div>
-                        <div class="w-12 h-12 bg-brand-red/10 rounded-xl flex items-center justify-center text-brand-red border border-brand-red/30">
-                            <i class="fa-solid fa-server text-xl"></i>
-                        </div>
+                <!-- Live Revenue Split Info Widget -->
+                <div class="bg-slate-900/90 rounded-xl p-3 border border-slate-800 flex items-center justify-between text-xs sm:text-sm">
+                    <span class="text-slate-400 font-medium">⚡ Active Platform Revenue Model:</span>
+                    <div class="flex items-center space-x-3">
+                        <span id="splitCreatorDisplay" class="text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-1 rounded-lg border border-emerald-800/50">40% Creator</span>
+                        <span id="splitPlatformDisplay" class="text-cyan-400 font-bold bg-cyan-950/80 px-2.5 py-1 rounded-lg border border-cyan-800/50">60% Platform</span>
                     </div>
                 </div>
             </div>
 
-            <!-- COMMENTS SECTION -->
-            <div class="bg-brand-surface p-5 rounded-2xl border border-brand-border flex flex-col gap-4">
-                <h3 class="text-base font-bold text-white flex items-center gap-2">
-                    <i class="fa-solid fa-comments text-gray-400"></i>
-                    <span>Community Discussion</span>
+            <!-- Live Comment Feed Section -->
+            <div class="bg-[#151C28] p-5 rounded-2xl border border-slate-800/80 shadow-xl space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center justify-between">
+                    <span>Comments</span>
+                    <span id="totalCommentsHeader" class="text-sm font-normal text-slate-400">Total: 3</span>
                 </h3>
 
-                <!-- Add Comment Input -->
+                <!-- Comment Input Box -->
                 <div class="flex gap-3">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" class="w-9 h-9 rounded-full object-cover">
-                    <div class="flex-1 flex gap-2">
-                        <input id="commentInput" type="text" placeholder="Add a public comment..." class="w-full bg-brand-card border border-brand-border rounded-xl px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-brand-red">
-                        <button onclick="postComment()" class="bg-brand-red hover:bg-brand-darkRed text-white px-4 py-2 rounded-xl text-sm font-bold transition-colors">Post</button>
+                    <div class="w-10 h-10 rounded-full bg-cyan-600 flex items-center justify-center font-bold text-white flex-shrink-0">
+                        Y
+                    </div>
+                    <div class="flex-grow space-y-2">
+                        <textarea id="commentInput" rows="2" placeholder="Add a public comment..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-red-500 transition resize-none"></textarea>
+                        <div class="flex justify-end">
+                            <button onclick="postComment()" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition">
+                                Comment
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Comment List -->
-                <div id="commentList" class="flex flex-col gap-4 mt-2">
-                    <div class="flex gap-3 text-sm">
-                        <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs">JD</div>
-                        <div class="flex-1">
-                            <div class="flex items-center gap-2">
-                                <span class="font-bold text-white">John Doe</span>
-                                <span class="text-xs text-gray-500">2 hours ago</span>
+                <!-- Comments Feed List -->
+                <div id="commentsFeed" class="space-y-4 pt-4 border-t border-slate-800/80">
+                    <div class="flex space-x-3">
+                        <div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center font-bold text-xs text-white">JD</div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm font-bold text-slate-200">John Doe</span>
+                                <span class="text-xs text-slate-500">2 hours ago</span>
                             </div>
-                            <p class="text-gray-300 text-xs mt-1">This video platform streaming quality is unmatched! Loved the 40% creator payout breakdown visualizer.</p>
+                            <p class="text-sm text-slate-300 mt-1">This platform UI looks extremely crisp! Awesome work!</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center font-bold text-xs text-white">AS</div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm font-bold text-slate-200">Alex Smith</span>
+                                <span class="text-xs text-slate-500">5 hours ago</span>
+                            </div>
+                            <p class="text-sm text-slate-300 mt-1">Monetization split looks awesome. Can't wait to hit 20 subs!</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-3">
+                        <div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center font-bold text-xs text-white">MK</div>
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm font-bold text-slate-200">Maria Khan</span>
+                                <span class="text-xs text-slate-500">1 day ago</span>
+                            </div>
+                            <p class="text-sm text-slate-300 mt-1">Binance Pay integrated checkout is a great touch.</p>
                         </div>
                     </div>
                 </div>
             </div>
-
         </section>
 
-        <!-- RIGHT COLUMN: UP NEXT / Dynamic Video Feed (4/12 Desktop) -->
-        <aside class="lg:col-span-4 flex flex-col gap-4">
-            <div class="flex items-center justify-between pb-2 border-b border-brand-border">
-                <h2 class="font-bold text-white text-base flex items-center gap-2">
-                    <i class="fa-solid fa-play-circle text-brand-red"></i>
+        <!-- Sidebar Playlist / Next Videos -->
+        <aside class="space-y-4">
+            <div class="bg-[#151C28] p-4 rounded-2xl border border-slate-800/80 shadow-xl space-y-3">
+                <h2 class="text-base font-bold text-white flex items-center justify-between pb-2 border-b border-slate-800">
                     <span>Up Next</span>
+                    <span class="text-xs text-cyan-400">Autoplay ON</span>
                 </h2>
-                <div class="flex items-center gap-2 text-xs text-gray-400">
-                    <span>Autoplay</span>
-                    <input type="checkbox" checked class="accent-brand-red cursor-pointer">
+
+                <!-- Dynamic Playlist Items Grid -->
+                <div id="playlistContainer" class="space-y-3 max-h-[750px] overflow-y-auto pr-1">
+                    
+                    <!-- Item 1 -->
+                    <div onclick="changeVideo('dQw4w9WgXcQ', 'Rick Astley - Never Gonna Give You Up')" class="flex gap-3 p-2 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 cursor-pointer border border-slate-800 transition group">
+                        <div class="relative w-32 h-20 rounded-lg overflow-hidden bg-black flex-shrink-0">
+                            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Thumbnail">
+                            <span class="absolute bottom-1 right-1 bg-black/80 text-[10px] px-1 rounded text-white font-mono">3:33</span>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="text-xs font-bold text-slate-100 group-hover:text-red-400 line-clamp-2 transition">Rick Astley - Never Gonna Give You Up</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Official Music Video</p>
+                            <p class="text-[10px] text-slate-500">1.4B views</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div onclick="changeVideo('L_LUpnjgPso', 'Official Cyberpunk Futuristic Trailer')" class="flex gap-3 p-2 rounded-xl hover:bg-slate-800/80 cursor-pointer border border-transparent hover:border-slate-800 transition group">
+                        <div class="relative w-32 h-20 rounded-lg overflow-hidden bg-black flex-shrink-0">
+                            <img src="https://img.youtube.com/vi/L_LUpnjgPso/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Thumbnail">
+                            <span class="absolute bottom-1 right-1 bg-black/80 text-[10px] px-1 rounded text-white font-mono">2:15</span>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="text-xs font-bold text-slate-100 group-hover:text-red-400 line-clamp-2 transition">Official Cyberpunk Futuristic Trailer</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">Gaming Network</p>
+                            <p class="text-[10px] text-slate-500">850K views</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div onclick="changeVideo('3JZ_D3ELwOQ', 'Relaxing Lo-Fi Beats for Coding & Chill')" class="flex gap-3 p-2 rounded-xl hover:bg-slate-800/80 cursor-pointer border border-transparent hover:border-slate-800 transition group">
+                        <div class="relative w-32 h-20 rounded-lg overflow-hidden bg-black flex-shrink-0">
+                            <img src="https://img.youtube.com/vi/3JZ_D3ELwOQ/hqdefault.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" alt="Thumbnail">
+                            <span class="absolute bottom-1 right-1 bg-black/80 text-[10px] px-1 rounded text-white font-mono">LIVE</span>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="text-xs font-bold text-slate-100 group-hover:text-red-400 line-clamp-2 transition">Relaxing Lo-Fi Beats for Coding & Chill</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">ChillHop Music</p>
+                            <p class="text-[10px] text-slate-500">2.1M watching</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-[#0B0F17] py-4 text-center text-xs text-slate-500">
+        &copy; 2025 NATKFLIX PRO. All rights reserved. Enterprise Front-End Infrastructure.
+    </footer>
+
+    <!-- ==================== MODALS SECTION ==================== -->
+
+    <!-- 1. Custom Alert Toast / Alert Modal -->
+    <div id="alertModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-[#151C28] border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl text-center space-y-4">
+            <div id="alertIcon" class="text-4xl">⚠️</div>
+            <h3 id="alertTitle" class="text-xl font-bold text-white">Notice</h3>
+            <p id="alertMessage" class="text-sm text-slate-300"></p>
+            <button onclick="closeModal('alertModal')" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-xl text-sm transition">
+                Understand
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. Public Upload Video Modal -->
+    <div id="uploadModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-[#151C28] border border-slate-700 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2"><span>📤</span> Public Video Submission</h3>
+                <button onclick="closeModal('uploadModal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+            <form id="uploadForm" onsubmit="handleUploadSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Video Title</label>
+                    <input type="text" id="uploadTitle" required placeholder="Enter video title" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">YouTube Video URL or Video ID</label>
+                    <input type="text" id="uploadUrl" required placeholder="e.g. https://www.youtube.com/watch?v=dQw4w9WgXcQ or dQw4w9WgXcQ" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-red-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Channel Name</label>
+                    <input type="text" id="uploadChannel" required placeholder="Your channel name" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:outline-none focus:border-red-500">
+                </div>
+                <div class="pt-2 flex justify-end gap-3">
+                    <button type="button" onclick="closeModal('uploadModal')" class="px-4 py-2 bg-slate-800 text-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-700">Cancel</button>
+                    <button type="submit" class="px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-bold shadow-lg shadow-red-600/30">Publish Video</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. Share Video Modal -->
+    <div id="shareModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-[#151C28] border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2"><span>🔗</span> Share Video</h3>
+                <button onclick="closeModal('shareModal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+            <p class="text-xs text-slate-400">Copy the link below to share this content with your network.</p>
+            <div class="flex items-center gap-2 bg-slate-900 border border-slate-700 rounded-xl p-2">
+                <input type="text" id="shareUrlInput" readonly value="https://natkflix-pro.app/watch?v=dQw4w9WgXcQ" class="w-full bg-transparent text-xs text-slate-300 focus:outline-none px-2">
+                <button onclick="copyShareLink()" class="bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg whitespace-nowrap transition">
+                    Copy Link
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Billing / Monetization Checkout Modal -->
+    <div id="billingModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+        <div class="bg-[#151C28] border border-slate-700 w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <div>
+                    <h3 class="text-lg font-bold text-white">💰 Monetization Activation</h3>
+                    <p class="text-xs text-slate-400">One-time account verification & fee</p>
+                </div>
+                <button onclick="closeModal('billingModal')" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+
+            <!-- Pricing Badge -->
+            <div class="bg-gradient-to-r from-emerald-950/80 to-teal-950/80 border border-emerald-800/80 p-3 rounded-xl flex justify-between items-center">
+                <span class="text-xs text-emerald-300 font-bold uppercase">Setup Fee Required</span>
+                <span id="billingFeeDisplay" class="text-xl font-extrabold text-emerald-400">$9.99 USD</span>
+            </div>
+
+            <!-- Payment Gateway Tabs -->
+            <div class="space-y-2">
+                <label class="text-xs font-bold text-slate-400 uppercase">Select Payment Gateway</label>
+                <div class="grid grid-cols-3 gap-2">
+                    <button onclick="selectPaymentTab('bkash')" id="tab-bkash" class="pay-tab border border-pink-600/50 bg-pink-950/30 text-pink-400 font-bold py-2 rounded-xl text-xs hover:bg-pink-900/40">bKash</button>
+                    <button onclick="selectPaymentTab('nagad')" id="tab-nagad" class="pay-tab border border-slate-700 bg-slate-900 text-slate-400 font-bold py-2 rounded-xl text-xs hover:bg-slate-800">Nagad</button>
+                    <button onclick="selectPaymentTab('binance')" id="tab-binance" class="pay-tab border border-slate-700 bg-slate-900 text-slate-400 font-bold py-2 rounded-xl text-xs hover:bg-slate-800">Binance Pay</button>
                 </div>
             </div>
 
-            <!-- Dynamic Feed Container (New uploads prepend here!) -->
-            <div id="upNextFeed" class="flex flex-col gap-3">
-                
-                <!-- Sample Card 1 -->
-                <div onclick="playVideo('L_LUpnjgPso', 'Cyberpunk 2077 Night City 4K Demo', 'NATK Gaming')" class="group flex gap-3 p-2 rounded-xl bg-brand-surface hover:bg-brand-card border border-transparent hover:border-brand-border transition-all cursor-pointer">
-                    <div class="relative w-36 aspect-video rounded-lg overflow-hidden bg-gray-900 flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
-                        <span class="absolute bottom-1 right-1 bg-black/80 text-[10px] px-1.5 py-0.5 rounded text-gray-200 font-mono">14:20</span>
-                    </div>
-                    <div class="flex flex-
+            <!-- Dynamic Payment Form Info -->
+            <div id="paymentTabContent" class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-xs space-y-2">
+                <p class="text-slate-300 font-bold" id="paymentTabTitle">bKash Merchant Pay</p>
+                <p class="text-slate-400" id="paymentTabDesc">Send payment to Merchant Number: <span class="text-pink-400 font-mono font-bold">+880 1700-000000</span></p>
+            </div>
+
+            <button onclick="completePayment()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-emerald-900/40">
+                Confirm & Activate Revenue
+            </button>
+        </div>
+    </div>
+
+    <!-- 5. Admin Control Panel Dashboard Modal -->
+    <div id="adminModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+        <div class="bg-[#151C28] border border-slate-700 w-full max-w-lg rounded-2xl p-6 shadow-2xl space-y-4">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2"><span>🛠️</span> Admin Dashboard</h3>
+                <button onclick="closeModal('
