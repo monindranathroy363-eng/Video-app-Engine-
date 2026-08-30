@@ -1,18 +1,13 @@
+```html
 <!DOCTYPE html>
-<html lang="bn" class="dark scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>নাটকফ্লিক্স | NatokFlix - আনলিমিটেড বাংলা বিনোদন</title>
-    <!-- Tailwind CSS CDN -->
+    <title>NATKFLIX PRO — Premium Video & Monetization Engine</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Hind Siliguri & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- Tailwind Config Customization -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -21,25 +16,23 @@
                     colors: {
                         brand: {
                             red: '#E50914',
-                            darkRed: '#B81D24',
-                            black: '#08080A',
-                            darkCard: '#121216',
-                            border: '#27272A'
+                            redGlow: '#FF1E27',
+                            dark: '#08080A',
+                            card: '#121218',
+                            border: '#222230',
+                            accent: '#10B981'
                         }
                     },
-                    fontFamily: {
-                        sans: ['Hind Siliguri', 'Inter', 'sans-serif'],
+                    boxShadow: {
+                        'glow-red': '0 0 25px -5px rgba(229, 9, 20, 0.5)',
+                        'glow-green': '0 0 25px -5px rgba(16, 185, 129, 0.4)',
+                        'glow-subtle': '0 4px 20px -2px rgba(0,0,0,0.7)'
                     }
                 }
             }
         }
     </script>
     <style>
-        body {
-            background-color: #08080A;
-            color: #F4F4F5;
-            font-family: 'Hind Siliguri', sans-serif;
-        }
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -49,472 +42,295 @@
             background: #08080A;
         }
         ::-webkit-scrollbar-thumb {
-            background: #27272A;
+            background: #222230;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
             background: #E50914;
         }
-        .glow-effect {
-            box-shadow: 0 0 25px -5px rgba(229, 9, 20, 0.3);
+        
+        .glass-panel {
+            background: rgba(18, 18, 24, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-nav {
+            background: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(229, 9, 20, 0.15);
+        }
+
+        /* Pulse Animation for Live Badges */
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        .live-pulse {
+            animation: pulse-glow 2s infinite ease-in-out;
         }
     </style>
 </head>
-<body class="bg-brand-black text-gray-100 antialiased selection:bg-brand-red selection:text-white flex flex-col min-h-screen">
+<body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-red selection:text-white min-h-screen flex flex-col justify-between">
 
-    <!-- ================= HEADER / NAVBAR ================= -->
-    <header class="sticky top-0 z-50 bg-brand-black/90 backdrop-blur-md border-b border-zinc-800/80 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo & Main Nav -->
-                <div class="flex items-center gap-8">
-                    <a href="#" class="flex items-center gap-2 group">
-                        <span class="text-3xl sm:text-4xl font-extrabold tracking-wider text-brand-red font-sans uppercase">
-                            নাটক<span class="text-white group-hover:text-brand-red transition-colors">ফ্লিক্স</span>
-                        </span>
-                        <span class="bg-brand-red text-white text-[10px] font-bold px-1.5 py-0.5 rounded tracking-widest uppercase">PRO</span>
-                    </a>
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
-                    <!-- Navigation Links -->
-                    <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
-                        <a href="#" class="text-white hover:text-brand-red transition-colors flex items-center gap-1.5">
-                            <i class="fa-solid fa-house text-brand-red"></i> হোম
-                        </a>
-                        <a href="#natok" class="text-gray-300 hover:text-white transition-colors">নাটক</a>
-                        <a href="#movies" class="text-gray-300 hover:text-white transition-colors">জনপ্রিয় মুভি</a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors">ওয়েব সিরিজ</a>
-                        <a href="#" class="text-gray-300 hover:text-white transition-colors flex items-center gap-1">
-                            <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> লাইভ টিভি
-                        </a>
-                    </nav>
-                </div>
-
-                <!-- Search & Actions -->
-                <div class="flex items-center gap-3 sm:gap-4">
-                    <!-- Search Bar -->
-                    <div class="relative hidden sm:block w-48 md:w-64">
-                        <input type="text" placeholder="নাটক বা মুভি খুঁজুন..." class="w-full bg-zinc-900/90 text-sm text-gray-200 placeholder-gray-500 rounded-full pl-10 pr-4 py-2 border border-zinc-800 focus:outline-none focus:border-brand-red transition-all">
-                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-gray-500 text-sm"></i>
+    <!-- ========================================== -->
+    <!-- 1. TOP NAVIGATION BAR                      -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+        <div class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- Brand Logo & Platform Badge -->
+            <div class="flex items-center gap-4">
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-red to-red-600 flex items-center justify-center shadow-glow-red transition-transform group-hover:scale-105">
+                        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
                     </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-slate-400">
+                            NATKFLIX <span class="text-brand-red font-extrabold text-xs px-2 py-0.5 rounded-md bg-brand-red/10 border border-brand-red/30 tracking-normal ml-1">PRO</span>
+                        </span>
+                        <span class="text-[10px] text-slate-400 tracking-widest uppercase -mt-1 font-semibold">Global Stream Engine</span>
+                    </div>
+                </a>
+            </div>
 
-                    <!-- Red & White Button Combo -->
-                    <a href="#" class="bg-brand-red hover:bg-brand-darkRed text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-full shadow-lg shadow-red-900/30 hover:shadow-red-900/50 transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-crown text-yellow-400"></i>
-                        <span>প্রিমিয়াম নিন</span>
-                    </a>
-
-                    <a href="#" class="bg-white hover:bg-gray-200 text-black text-xs sm:text-sm font-bold px-4 py-2.5 rounded-full transition-all">
-                        লগইন
-                    </a>
+            <!-- Global Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-xl mx-8 relative">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Search 4K HDR streams, channels, live events..." 
+                        class="w-full bg-slate-900/90 border border-slate-800 rounded-full py-2.5 pl-11 pr-12 text-sm text-slate-200 placeholder-slate-500 focus:outline-none focus:border-brand-red focus:ring-1 focus:ring-brand-red transition-all shadow-inner">
+                    <svg class="w-5 h-5 text-slate-500 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <span class="absolute right-3 top-2.5 text-[10px] font-mono text-slate-500 bg-slate-800 px-2 py-0.5 rounded border border-slate-700">⌘K</span>
                 </div>
+            </div>
 
+            <!-- Header CTAs & User Actions -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Creator Studio Button -->
+                <button onclick="openCreatorEngine()" class="relative inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-emerald-600/20 to-teal-600/20 text-emerald-400 border border-emerald-500/40 hover:border-emerald-400 hover:bg-emerald-500/30 transition-all duration-300 shadow-glow-green group">
+                    <span class="relative flex h-2.5 w-2.5">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span>💰 Creator Studio</span>
+                    <span class="hidden xl:inline text-[10px] bg-emerald-950 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-800/60 font-mono">70/30 Split</span>
+                </button>
+
+                <!-- Upload Video CTA -->
+                <button onclick="triggerUploadModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-brand-red hover:bg-red-600 text-white shadow-glow-red transition-all duration-300 hover:scale-[1.02] active:scale-95">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span class="hidden sm:inline">Upload Video</span>
+                </button>
+
+                <!-- Profile / Login Indicator -->
+                <div class="flex items-center gap-2 border-l border-slate-800 pl-3 sm:pl-4">
+                    <div class="relative cursor-pointer group" onclick="toggleUserMenu()">
+                        <img class="w-10 h-10 rounded-xl object-cover ring-2 ring-slate-800 group-hover:ring-brand-red transition-all" 
+                             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
+                             alt="User Profile">
+                        <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-brand-dark rounded-full"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- ================= MAIN CONTENT ================= -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
-
-        <!-- HERO VIDEO PLAYER SECTION -->
-        <section class="relative mb-8">
-            <!-- Player Header Details -->
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-                <div class="flex items-center gap-3">
-                    <span class="bg-brand-red text-white text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wide flex items-center gap-1">
-                        <i class="fa-solid fa-fire text-yellow-300"></i> ট্রেন্ডিং #১
-                    </span>
-                    <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-white tracking-normal">
-                        ব্যাচেলর পয়েন্ট - সিজন ৪ | এক্সক্লুসিভ স্পেশাল পর্ব
-                    </h1>
-                </div>
-                <div class="flex items-center gap-4 text-xs sm:text-sm text-gray-400">
-                    <span class="flex items-center gap-1 text-yellow-400 font-semibold"><i class="fa-solid fa-star"></i> ৯.৪</span>
-                    <span>২০২৪</span>
-                    <span class="border border-zinc-700 px-1.5 py-0.5 rounded text-[11px]">4K ULTRA HD</span>
-                </div>
-            </div>
-
-            <!-- Responsive Embedded YouTube Video Player -->
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-zinc-950 border border-zinc-800 shadow-2xl glow-effect group">
-                <iframe 
-                    class="absolute top-0 left-0 w-full h-full rounded-2xl"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0&modestbranding=1" 
-                    title="নাটকফ্লিক্স অফিশিয়াল প্লেয়ার" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-
-            <!-- Video Info & Interactive Actions Bar -->
-            <div class="mt-4 bg-zinc-900/60 backdrop-blur border border-zinc-800/80 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4">
-                <div class="flex items-center gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-red/20 border border-brand-red flex items-center justify-center text-brand-red font-bold">
-                            N
-                        </div>
-                        <div>
-                            <h4 class="text-sm font-semibold text-white">নাটকফ্লিক্স অরিজিনালস</h4>
-                            <p class="text-xs text-gray-400">২.৫ মিলিয়ন ভিউজ • ২ ঘণ্টা আগে প্রকাশিত</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Control Buttons -->
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-lg border border-zinc-700 transition flex items-center gap-2">
-                        <i class="fa-regular fa-thumbs-up text-brand-red"></i> পছন্দ (৪৫কে)
-                    </button>
-                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-lg border border-zinc-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-plus"></i> ওয়াচলিস্ট
-                    </button>
-                    <button class="bg-zinc-800 hover:bg-zinc-700 text-white text-xs sm:text-sm font-medium px-4 py-2 rounded-lg border border-zinc-700 transition flex items-center gap-2">
-                        <i class="fa-solid fa-share-nodes"></i> শেয়ার
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================= SPONSORED ADVERTISEMENT SLOT #1 (BELOW PLAYER) ================= -->
-        <div class="my-8 w-full">
-            <div class="bg-zinc-900/80 border border-dashed border-zinc-700/80 rounded-2xl p-4 sm:p-6 text-center relative overflow-hidden group">
-                <div class="flex items-center justify-between text-xs text-gray-500 mb-2 border-b border-zinc-800 pb-1">
-                    <span class="uppercase tracking-widest text-[10px] font-bold text-gray-400">SPONSORED ADVERTISEMENT / গুগল বিজ্ঞাপন</span>
-                    <span class="hover:text-gray-300 cursor-pointer"><i class="fa-solid fa-circle-info"></i> Ads by Google</span>
-                </div>
-                
-                <!-- Google AdSense Container Placeholder -->
-                <div class="min-h-[100px] flex flex-col items-center justify-center bg-zinc-950/50 rounded-xl p-4 border border-zinc-800/50">
-                    <!-- Ins tag representation for Google AdSense -->
-                    <ins class="adsbygoogle block w-full"
-                         style="display:block"
-                         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                         data-ad-slot="1234567890"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    
-                    <!-- Simulated Premium Ad Visual -->
-                    <div class="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
-                        <div class="flex items-center gap-4 text-left">
-                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-red-600 to-orange-500 flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                                <i class="fa-solid fa-bolt"></i>
-                            </div>
-                            <div>
-                                <h5 class="text-sm font-bold text-white">হাই-স্পিড ইন্টারনেট প্যাক - মাত্র ১৯৯ টাকায়!</h5>
-                                <p class="text-xs text-gray-400">নাটকফ্লিক্স ইউজারদের জন্য বিশেষ ছাড়। বাফারিং ছাড়া ৪কে ভিডিও উপভোগ করুন।</p>
-                            </div>
-                        </div>
-                        <a href="#" class="bg-white hover:bg-gray-200 text-black font-bold text-xs px-5 py-2.5 rounded-lg whitespace-nowrap transition shadow-md">
-                            এখনই কিনুন <i class="fa-solid fa-arrow-right ml-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= CATEGORY 1: টপ নাটক (TOP NATOK) ================= -->
-        <section id="natok" class="my-10">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-7 bg-brand-red rounded-full"></div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">টপ নাটক (Top Natok)</h2>
-                </div>
-                <a href="#" class="text-xs sm:text-sm font-semibold text-brand-red hover:text-white transition flex items-center gap-1">
-                    সবগুলো দেখুন <i class="fa-solid fa-chevron-right text-xs"></i>
-                </a>
-            </div>
-
-            <!-- Natok Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-                
-                <!-- Card 1 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=600&q=80" alt="নাটক পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded">এইচডি</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">শেষ বয়সের গল্প</h3>
-                        <p class="text-xs text-gray-400 mt-1">মোশাররফ করিম • ড্রামা</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?auto=format&fit=crop&w=600&q=80" alt="নাটক পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-[10px] font-bold px-2 py-0.5 rounded">প্রিমিয়াম</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">বিদেশ ফেরত জামাই</h3>
-                        <p class="text-xs text-gray-400 mt-1">চঞ্চল চৌধুরী • কমেডি</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=600&q=80" alt="নাটক পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded">ফ্রি</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">মন ভাঙার শহর</h3>
-                        <p class="text-xs text-gray-400 mt-1">আফরান নিশো • রোমান্টিক</p>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=600&q=80" alt="নাটক পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded">নতুন</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">এক রাতের গল্প</h3>
-                        <p class="text-xs text-gray-400 mt-1">মেহজাবীন • থ্রিলার</p>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-brand-red/50 transition-all duration-300 hover:-translate-y-1 shadow-lg hidden lg:block">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=600&q=80" alt="নাটক পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 left-2 bg-brand-red text-white text-[10px] font-bold px-2 py-0.5 rounded">এইচডি</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">ফ্যামিলি ক্রাইসিস</h3>
-                        <p class="text-xs text-gray-400 mt-1">জিয়াউল ফারুক অপূর্ব • ড্রামা</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- ================= CATEGORY 2: জনপ্রিয় মুভি (POPULAR MOVIES) ================= -->
-        <section id="movies" class="my-10">
-            <div class="flex items-center justify-between mb-6">
-                <div class="flex items-center gap-3">
-                    <div class="w-1.5 h-7 bg-white rounded-full"></div>
-                    <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-wide">জনপ্রিয় মুভি (Popular Movies)</h2>
-                </div>
-                <a href="#" class="text-xs sm:text-sm font-semibold text-brand-red hover:text-white transition flex items-center gap-1">
-                    সবগুলো দেখুন <i class="fa-solid fa-chevron-right text-xs"></i>
-                </a>
-            </div>
-
-            <!-- Movie Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
-                
-                <!-- Movie Card 1 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?auto=format&fit=crop&w=600&q=80" alt="মুভি পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star"></i> ৮.৮</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">তুফান (Tufan)</h3>
-                        <p class="text-xs text-gray-400 mt-1">শাকিব খান • অ্যাকশন</p>
-                    </div>
-                </div>
-
-                <!-- Movie Card 2 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="মুভি পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star"></i> ৯.১</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">হাওয়া (Hawa)</h3>
-                        <p class="text-xs text-gray-400 mt-1">চঞ্চল চৌধুরী • রহস্য</p>
-                    </div>
-                </div>
-
-                <!-- Movie Card 3 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="মুভি পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star"></i> ৮.৫</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">পরাণ (Poran)</h3>
-                        <p class="text-xs text-gray-400 mt-1">শরিফুল রাজ • রোমান্টিক</p>
-                    </div>
-                </div>
-
-                <!-- Movie Card 4 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 shadow-lg">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1533928298208-27ff66555d8d?auto=format&fit=crop&w=600&q=80" alt="মুভি পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star"></i> ৯.৩</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">কারাগার (Karagar)</h3>
-                        <p class="text-xs text-gray-400 mt-1">চঞ্চল চৌধুরী • রহস্য থ্রিলার</p>
-                    </div>
-                </div>
-
-                <!-- Movie Card 5 -->
-                <div class="group relative bg-brand-darkCard rounded-xl overflow-hidden border border-zinc-800/80 hover:border-white/50 transition-all duration-300 hover:-translate-y-1 shadow-lg hidden lg:block">
-                    <div class="relative aspect-[2/3] overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1542204165-65bf26472b9b?auto=format&fit=crop&w=600&q=80" alt="মুভি পোস্টার" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
-                        <span class="absolute top-2 right-2 bg-yellow-500 text-black text-[10px] font-bold px-1.5 py-0.5 rounded flex items-center gap-1"><i class="fa-solid fa-star"></i> ৮.৭</span>
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40">
-                            <div class="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-lg transform group-hover:scale-110 transition">
-                                <i class="fa-solid fa-play ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-3">
-                        <h3 class="font-bold text-sm text-white group-hover:text-brand-red transition line-clamp-1">নেটওয়ার্কের বাইরে</h3>
-                        <p class="text-xs text-gray-400 mt-1">ইয়াশ রোহান • ড্রামা</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <!-- ================= FOOTER & BOTTOM ADVERTISEMENT ================= -->
-    <footer class="mt-auto bg-zinc-950 border-t border-zinc-800/80 pt-8 pb-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT LAYOUT                        -->
+    <!-- ========================================== -->
+    <main class="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
-            <!-- FOOTER SPONSORED ADVERTISEMENT SLOT #2 -->
-            <div class="mb-10">
-                <div class="bg-zinc-900/60 border border-dashed border-zinc-800 rounded-xl p-4 text-center">
-                    <div class="flex items-center justify-between text-[11px] text-gray-500 mb-2">
-                        <span>SPONSORED ADVERTISEMENT</span>
-                        <span>Google Ads</span>
-                    </div>
-                    
-                    <!-- Footer Google AdSense Container -->
-                    <div class="min-h-[90px] flex items-center justify-center bg-black/40 rounded-lg p-2 border border-zinc-800/60">
-                        <ins class="adsbygoogle block w-full"
-                             style="display:block"
-                             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-                             data-ad-slot="0987654321"
-                             data-ad-format="horizontal"
-                             data-full-width-responsive="true"></ins>
-                        
-                        <p class="text-xs text-gray-500">
-                            [ গুগলের স্পনসরড বিজ্ঞাপনের জন্য নির্ধারিত স্থান ]
+            <!-- LEFT / PRIMARY STREAM CONTAINER (8 COLUMNS) -->
+            <div class="lg:col-span-8 flex flex-col gap-6">
+                
+                <!-- FREE WATCH NOTICE BANNER -->
+                <div class="glass-panel p-3 px-4 rounded-2xl flex items-center justify-between border-l-4 border-l-emerald-500 text-xs sm:text-sm">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-3 w-3 relative">
+                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                        </span>
+                        <p class="text-slate-300">
+                            <strong class="text-white font-semibold">100% FREE Stream Engine:</strong> All public viewers watch unlimited 4K content with zero subscription fees.
                         </p>
                     </div>
+                    <span class="hidden sm:inline-block font-mono text-[11px] bg-slate-800 text-slate-400 px-2 py-1 rounded">No Paywall for Audience</span>
                 </div>
-            </div>
 
-            <!-- Footer Links & Info -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-sm">
-                <div>
-                    <h4 class="font-bold text-white mb-4 text-base">নাটকফ্লিক্স</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        বাংলাদেশের সবচেয়ে জনপ্রিয় ওটিটি ভিডিও স্ট্রিম প্ল্যাটফর্ম। এইচডি কোয়ালিটিতে বাংলা নাটক, সিনেমা ও ওয়েব সিরিজ উপভোগ করুন।
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4 text-base">নেভিগেশন</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">হোম পেজ</a></li>
-                        <li><a href="#natok" class="hover:text-white transition">জনপ্রিয় নাটক</a></li>
-                        <li><a href="#movies" class="hover:text-white transition">ব্লকবাস্টার মুভি</a></li>
-                        <li><a href="#" class="hover:text-white transition">লাইভ টিভি চ্যানেল</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4 text-base">সাহায্য ও সাপোর্ট</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">এফএকিউ (FAQ)</a></li>
-                        <li><a href="#" class="hover:text-white transition">সাবস্ক্রিপশন প্ল্যান</a></li>
-                        <li><a href="#" class="hover:text-white transition">যোগাযোগ করুন</a></li>
-                        <li><a href="#" class="hover:text-white transition">প্রাইভেসি পলিসি</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-white mb-4 text-base">সোশ্যাল মিডিয়া</h4>
-                    <div class="flex items-center gap-3">
-                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red transition">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red transition">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                        <a href="#" class="w-9 h-9 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-gray-300 hover:text-white hover:bg-brand-red transition">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
+                <!-- MAIN VIDEO PLAYER CONTAINER (16:9 Aspect Ratio) -->
+                <div class="relative w-full rounded-3xl overflow-hidden bg-black border border-slate-800 shadow-2xl group">
+                    <div class="relative pb-[56.25%] h-0 overflow-hidden">
+                        <!-- Responsive Embed Player -->
+                        <iframe 
+                            class="absolute top-0 left-0 w-full h-full border-0 rounded-3xl"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0&modestbranding=1" 
+                            title="NATKFLIX Video Stream" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
+
+                <!-- VIDEO METADATA & ACTIONS -->
+                <div class="glass-panel p-6 rounded-3xl space-y-5">
+                    <!-- Title & Live Tag -->
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="px-2.5 py-0.5 rounded-md bg-brand-red/20 text-brand-red text-xs font-bold border border-brand-red/30 tracking-wide uppercase">4K HDR</span>
+                            <span class="px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">Monetized Stream</span>
+                            <span class="text-xs text-slate-400 font-mono">1,248,502 views • Broadcasted Live</span>
+                        </div>
+                        <h1 class="text-xl sm:text-2xl font-black text-white tracking-tight leading-snug">
+                            NEON OVERDRIVE 2088 — Cyberpunk Synthwave Live Experience [4K 60FPS]
+                        </h1>
+                    </div>
+
+                    <!-- Creator Info Bar & Social Actions -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+                        <!-- Creator Profile Info -->
+                        <div class="flex items-center gap-3">
+                            <img class="w-12 h-12 rounded-2xl object-cover ring-2 ring-brand-red/50" 
+                                 src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=150&q=80" 
+                                 alt="Creator Avatar">
+                            <div>
+                                <div class="flex items-center gap-1.5">
+                                    <h3 class="font-bold text-white text-base">Aether Wave Labs</h3>
+                                    <svg class="w-4 h-4 text-brand-red" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <p class="text-xs text-slate-400">1.48M Subscribers • <span class="text-emerald-400 font-medium">Pro Partner</span></p>
+                            </div>
+                            <button class="ml-2 px-4 py-2 rounded-xl bg-white hover:bg-slate-200 text-black font-bold text-xs transition-colors">
+                                Subscribe
+                            </button>
+                        </div>
+
+                        <!-- Video Action Buttons -->
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <button onclick="handleLike()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-200 transition-colors">
+                                <svg class="w-4 h-4 text-brand-red" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                                <span id="likeCount">84.2K</span>
+                            </button>
+
+                            <button onclick="openMonetizationModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600/20 to-teal-600/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 text-xs font-bold transition-all shadow-glow-green">
+                                <span>💰 Monetize Channel</span>
+                            </button>
+
+                            <button onclick="shareStream()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-xs font-semibold text-slate-200 transition-colors">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 100-5.367 3 3 0 000 5.367zm0 10.734a3 3 0 100-5.367 3 3 0 000 5.367z"/></svg>
+                                Share
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Stream Description -->
+                    <div class="bg-slate-950/60 p-4 rounded-2xl border border-slate-800/60 text-xs text-slate-300 leading-relaxed space-y-2">
+                        <p>Welcome to the official 24/7 Cyberpunk Synthwave audio visual experience broadcasted live worldwide via NATKFLIX High-Bitrate CDN.</p>
+                        <p class="text-slate-400">⚡ Monetized Creators on NATKFLIX PRO retain <strong>70% of total dynamic ad revenue</strong> generated on their streams, while 30% powers global bandwidth infrastructure.</p>
+                    </div>
+                </div>
+
+                <!-- LIVE AD BANNER SECTION (Platform Revenue Engine) -->
+                <div class="relative glass-panel p-4 rounded-3xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 overflow-hidden group">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-red/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="flex items-center gap-4 z-10">
+                        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-lg">
+                            AD
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Sponsored Partner</span>
+                                <span class="text-xs text-slate-500">Live Platform Monetization Placement</span>
+                            </div>
+                            <h4 class="text-sm font-bold text-white mt-0.5">QuantumCloud GPU Render Farms for Creators</h4>
+                            <p class="text-xs text-slate-400">Scale your video rendering up to 10x faster with AI hardware acceleration.</p>
+                        </div>
+                    </div>
+                    <button class="z-10 w-full sm:w-auto px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 transition-colors whitespace-nowrap">
+                        Learn More
+                    </button>
+                </div>
+
             </div>
 
-            <!-- Copyright -->
-            <div class="border-t border-zinc-900 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-2">
-                <p>© ২০২৪ নাটকফ্লিক্স (NatokFlix) - সর্বস্বত্ব সংরক্ষিত।</p>
-                <p>Designed with Luxury Dark Theme & Red/White Aesthetics</p>
-            </div>
+            <!-- RIGHT / SIDEBAR QUEUE & MONETIZATION CALLOUT (4 COLUMNS) -->
+            <div class="lg:col-span-4 flex flex-col gap-6">
+                
+                <!-- MONETIZATION ENGINE PROMO CARD -->
+                <div class="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/40 border border-emerald-500/30 shadow-glow-green">
+                    <div class="absolute -right-6 -top-6 w-28 h-28 bg-emerald-500/20 rounded-full blur-2xl"></div>
+                    
+                    <div class="relative z-10 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            30% PLATFORM SPLIT RULE
+                        </div>
 
-        </div>
-    </footer>
+                        <h3 class="text-xl font-extrabold text-white leading-tight">
+                            Start Earning Stream Revenue Today
+                        </h3>
 
-    <!-- Google AdSense Script (Placeholder ready for dynamic ad load) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-    <script>
-        // Trigger Adsense slots if live
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-</body>
-</html>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Turn on monetization for your channel. Get <strong class="text-emerald-400">70% payout</strong> from dynamic pre-roll & banner ads while NATKFLIX retains 30% for host infrastructure.
+                        </p>
+
+                        <!-- Revenue Split Visual Gauge -->
+                        <div class="bg-slate-950/80 p-3.5 rounded-2xl border border-slate-800/80 space-y-2">
+                            <div class="flex justify-between text-xs font-bold">
+                                <span class="text-emerald-400">Creator Share: 70%</span>
+                                <span class="text-slate-400">NATKFLIX Fee: 30%</span>
+                            </div>
+                            <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden flex p-0.5">
+                                <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-l-full w-[70%]"></div>
+                                <div class="h-full bg-brand-red rounded-r-full w-[30%]"></div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex flex-col gap-2">
+                            <button onclick="openMonetizationModal()" class="w-full py-3 px-4 rounded-xl font-extrabold text-xs bg-emerald-500 hover:bg-emerald-400 text-slate-950 transition-all transform hover:-translate-y-0.5 shadow-lg flex items-center justify-center gap-2">
+                                <span>Turn On Monetization ($9.99 Fee)</span>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                            </button>
+                            <span class="text-[10px] text-center text-slate-500 font-mono">One-time account activation & verification fee</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RECOMMENDED VIDEO STREAM QUEUE -->
+                <div class="glass-panel p-5 rounded-3xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <h3 class="font-black text-sm uppercase tracking-wider text-slate-200">Up Next Streams</h3>
+                        <span class="text-xs text-brand-red font-bold">Autoplay ON</span>
+                    </div>
+
+                    <!-- Recommended Item 1 -->
+                    <div class="flex gap-3 group cursor-pointer p-2 rounded-2xl hover:bg-slate-900/80 transition-all">
+                        <div class="relative w-32 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-slate-900">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=300&q=80" alt="Thumb" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute bottom-1 right-1 bg-black/80 text-[10px] text-white px-1.5 py-0.5 rounded font-mono">14:20</span>
+                        </div>
+                        <div class="flex flex-col justify-between py-0.5">
+                            <h4 class="text-xs font-bold text-white group-hover:text-brand-red line-clamp-2 transition-colors">
+                                Deep Focus Ambient Coding Engine 2026
+                            </h4>
+                            <p class="text-[11px] text-slate-400">CyberAudio Pro</p>
+                            <span class="text-[10px] text-emerald-400 font-mono">Est. Revenue: $412.50</span>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Item 2 -->
+                    <div class="flex gap-3 group cursor-pointer p-2 rounded-2xl hover:bg-slate-900/80 transition-all">
+                        <div class="relative w-32 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-slate-900">
+                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=300&q=80" alt="Thumb" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute bottom-1 right-1 bg-black/80 text-[
