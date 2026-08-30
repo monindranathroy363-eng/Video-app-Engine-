@@ -1,0 +1,16 @@
+{
+    "short_name": "NATKFLIX PRO",
+    "name": "NATKFLIX PRO - Streaming Platform",
+    "icons": [
+        {
+            "src": "https://icons8.com",
+            "type": "image/png",
+            "sizes": "192x192"
+        }
+    ],
+    "start_url": "/Video-app-Engine-/",
+    "background_color": "#090505",
+    "theme_color": "#E50914",
+    "display": "standalone",
+    "orientation": "portrait"
+}
