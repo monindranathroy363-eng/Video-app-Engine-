@@ -30,6 +30,7 @@ jobs:
       - name: Clone Master App Template
         run: |
           git clone https://github.com master_app
+
           cp app_config.json master_app/assets/cfg/ || true
 
       - name: Build APK
