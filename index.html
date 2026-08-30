@@ -1,311 +1,479 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="h-full bg-slate-950 text-slate-100">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZESTAPLAY - Global Enterprise Video & Monetization Architecture</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Firebase SDK (Compat Version for Direct Browser Execution) -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZESTAPLAY - Next-Gen Gaming & Creator Platform</title>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        zesta: {
-                            bg: '#090D16',
-                            card: '#111827',
-                            border: '#1F2937',
-                            neon: '#10B981',
-                            purple: '#8B5CF6',
-                            accent: '#F59E0B'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif']
-                    }
-                }
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#8b5cf6',
+              600: '#7c3aed',
+              700: '#6d28d9',
+              accent: '#f43f5e'
             }
+          }
         }
-    </script>
-    <style>
-        @keyframes pulse-ring {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-        .animate-install-ring {
-            animation: pulse-ring 2s infinite;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #090D16;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #1F2937;
-            border-radius: 4px;
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Firebase v9/v10 Compat Web SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
 </head>
-<body class="bg-zesta-bg text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-black custom-scrollbar min-h-screen flex flex-col">
+<body class="h-full font-sans antialiased flex flex-col bg-slate-950 text-slate-100 selection:bg-brand-500 selection:text-white">
 
-    <!-- TOP NAVIGATION BAR -->
-    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 lg:px-8 py-3 flex items-center justify-between">
-        <!-- Brand Logo -->
-        <div class="flex items-center space-x-3">
-            <button class="text-slate-400 hover:text-white lg:hidden text-xl mr-2">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <div class="flex items-center space-x-2">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-indigo-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-                    <i class="fa-solid fa-play text-slate-950 font-black text-lg"></i>
-                </div>
-                <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-slate-200 to-emerald-400 bg-clip-text text-transparent">ZESTAPLAY</span>
-            </div>
-            <span class="hidden sm:inline-block text-xs px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold tracking-wide">ENTERPRISE 3.0</span>
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center font-black text-xl text-white shadow-lg shadow-brand-500/20">
+            Z
+          </div>
+          <span class="text-2xl font-black tracking-wider bg-gradient-to-r from-white via-slate-200 to-brand-500 bg-clip-text text-transparent">
+            ZESTAPLAY
+          </span>
         </div>
 
-        <!-- Global Search Bar -->
-        <div class="hidden md:flex flex-1 max-w-xl mx-8">
-            <div class="relative w-full">
-                <input type="text" placeholder="Search high-res global content streams, creators, networks..." class="w-full bg-slate-900 border border-slate-700/80 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 text-slate-200 placeholder-slate-500 transition-all">
-                <button class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-400">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-            </div>
+        <!-- Action Controls -->
+        <div class="flex items-center gap-3">
+          <button id="pwaInstallBtn" onclick="installApp()" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-brand-500 border border-slate-700 transition">
+            <i class="fa-solid fa-mobile-screen-button"></i> 📲 Install App
+          </button>
+          
+          <button onclick="openModal('adminModal')" class="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 text-xs font-semibold text-slate-400 hover:text-slate-200 transition">
+            <i class="fa-solid fa-user-shield"></i> Secret Admin
+          </button>
+
+          <button id="navRegisterBtn" onclick="openModal('registerModal')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:opacity-90 text-white text-sm font-bold shadow-lg shadow-brand-600/20 transition transform active:scale-95">
+            Register / Verify
+          </button>
         </div>
-
-        <!-- Right Utilities & User Gate Controls -->
-        <div class="flex items-center space-x-3">
-            <!-- Dynamic Flashing Install App Utility -->
-            <button onclick="triggerInstallApp()" class="animate-install-ring hidden sm:flex items-center space-x-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 px-3.5 py-1.5 rounded-full font-bold text-xs uppercase tracking-wider hover:opacity-95 transition-all shadow-md">
-                <i class="fa-solid fa-mobile-screen-button text-sm"></i>
-                <span>📲 Install App</span>
-            </button>
-
-            <!-- Admin Modal Trigger -->
-            <button onclick="openAdminModal()" class="flex items-center space-x-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold transition-all">
-                <i class="fa-solid fa-shield-halved text-emerald-400"></i>
-                <span class="hidden sm:inline">Admin Access</span>
-            </button>
-
-            <!-- Profile / Registration Trigger -->
-            <div id="userProfileBadge" class="flex items-center">
-                <button onclick="openRegisterModal()" class="flex items-center space-x-2 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white px-3.5 py-1.5 rounded-lg text-xs font-semibold shadow-lg shadow-indigo-500/20 transition-all">
-                    <i class="fa-solid fa-user-plus"></i>
-                    <span>Register / Verify</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- SYSTEM ALERTS CONTAINER -->
-    <div id="ageGateBanner" class="hidden bg-amber-500/10 border-b border-amber-500/30 px-4 py-2 text-center text-amber-400 text-xs font-semibold flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-triangle-exclamation text-amber-500 text-sm"></i>
-        <span>AGE LOCK ENGAGED: Account under 18 years old. Content monetization and 40% payout tiers strictly banned.</span>
+      </div>
     </div>
+  </header>
 
-    <div id="banBanner" class="hidden bg-red-500/10 border-b border-red-500/30 px-4 py-2 text-center text-red-400 text-xs font-semibold flex items-center justify-center space-x-2">
-        <i class="fa-solid fa-ban text-red-500 text-sm"></i>
-        <span>ACCOUNT TERMINATED: Creator profile permanently banned for repeated copyright violations. Monetization revoked.</span>
-    </div>
+  <!-- Main Grid Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-    <!-- MAIN BODY ARCHITECTURE -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <!-- Primary Content Column (Left 2 cols) -->
+    <section class="lg:col-span-2 flex flex-col gap-6">
+      
+      <!-- YouTube Active Player Container -->
+      <div class="relative w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl group">
+        <div class="aspect-video w-full">
+          <iframe 
+            class="w-full h-full border-0" 
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" 
+            title="ZESTAPLAY Stream Video" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+          </iframe>
+        </div>
         
-        <!-- LEFT / MAIN CONTENT AREA (8 COLS) -->
-        <section class="lg:col-span-8 flex flex-col space-y-6">
-            
-            <!-- EXPOSED VIDEO PLAYER CONTAINER -->
-            <div class="relative w-full aspect-video bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                <!-- Exposed YouTube Player Source Embed -->
-                <div id="videoContainer" class="w-full h-full">
-                    <iframe id="mainYouTubePlayer" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1&autoplay=0&rel=0" title="ZESTA Play Video Engine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                
-                <!-- Takedown Overlay (Hidden by Default) -->
-                <div id="takedownOverlay" class="hidden absolute inset-0 bg-slate-950 flex flex-col items-center justify-center p-6 text-center space-y-4">
-                    <div class="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-500 text-3xl">
-                        <i class="fa-solid fa-video-slash"></i>
-                    </div>
-                    <h2 class="text-xl font-bold text-white tracking-wide">VIDEO TAKEN DOWN BY MODERATION</h2>
-                    <p class="text-xs text-slate-400 max-w-md">This content has been permanently disabled by the platform administrator due to critical copyright strikes or severe policy violations.</p>
-                </div>
+        <!-- Video Information Bar -->
+        <div class="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-slate-900 border-t border-slate-800">
+          <div>
+            <h1 class="text-xl font-extrabold text-white tracking-tight">Official ZESTAPLAY Cyber Stream Event 2025</h1>
+            <p class="text-xs text-slate-400 mt-1"><i class="fa-solid fa-eye text-brand-500"></i> 142,890 Live Viewers &bull; Broadcasted live in 4K Ultra HD</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="openModal('reportModal')" class="px-3 py-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 text-xs font-semibold flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-triangle-exclamation"></i> ⚠️ Report Content
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Stream Comments Feed -->
+      <div class="flex-1 bg-slate-900/60 rounded-2xl border border-slate-800/80 p-5 backdrop-blur-sm flex flex-col">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+          <h2 class="text-base font-bold text-slate-200 flex items-center gap-2">
+            <i class="fa-solid fa-comments text-brand-500"></i>
+            Live Chat Feed
+          </h2>
+          <span id="commentCounter" class="text-xs font-mono bg-brand-500/10 text-brand-500 px-2.5 py-1 rounded-full font-bold border border-brand-500/20">
+            0 Comments
+          </span>
+        </div>
+
+        <!-- Comment Input Controls -->
+        <div class="mb-4">
+          <form id="commentForm" onsubmit="handleCommentSubmit(event)" class="flex flex-col sm:flex-row gap-2">
+            <input 
+              type="text" 
+              id="commentAuthor" 
+              placeholder="Your Name" 
+              required 
+              class="w-full sm:w-1/3 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-500 transition" 
+            />
+            <input 
+              type="text" 
+              id="commentText" 
+              placeholder="Join the discussion..." 
+              required 
+              class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-brand-500 transition" 
+            />
+            <button 
+              type="submit" 
+              class="px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg shadow-brand-600/20 transition flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-paper-plane"></i> Comment
+            </button>
+          </form>
+        </div>
+
+        <!-- Dynamic Live Comments Stream Container -->
+        <div id="commentsStream" class="flex-1 overflow-y-auto max-h-[320px] space-y-3 pr-2 scrollbar-thin scrollbar-thumb-slate-800">
+          <div id="noCommentsMsg" class="text-center py-8 text-slate-500 text-xs italic">
+            No live comments yet. Be the first to share your thoughts!
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Side Panel (Right 1 col) -->
+    <aside class="flex flex-col gap-6">
+
+      <!-- Revenue & Monetization Revenue-Split Card -->
+      <div class="bg-slate-900/60 rounded-2xl border border-slate-800 p-5 backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+            <i class="fa-solid fa-chart-pie text-brand-500"></i> Platform Monetization Split
+          </h3>
+          <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded font-mono font-bold">Active Protocol</span>
+        </div>
+
+        <!-- 40% Creator / 60% Platform Split Graphics -->
+        <div class="space-y-4">
+          <!-- Visual Bar -->
+          <div class="w-full h-4 bg-slate-800 rounded-full overflow-hidden flex p-0.5 border border-slate-700">
+            <div class="h-full bg-gradient-to-r from-brand-500 to-brand-600 rounded-l-full w-[40%] transition-all duration-500" title="40% Creator Pool"></div>
+            <div class="h-full bg-slate-700 rounded-r-full w-[60%] transition-all duration-500" title="60% Platform Ecosystem"></div>
+          </div>
+
+          <!-- Split Legend & Stats -->
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="p-3 bg-slate-950/80 rounded-xl border border-brand-500/20">
+              <span class="block text-2xl font-black text-brand-500">40%</span>
+              <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Creator Share</span>
             </div>
-
-            <!-- CONTENT METADATA & ACTIONS BAR -->
-            <div class="flex flex-col space-y-4">
-                <h1 id="videoTitle" class="text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug">
-                    Rick Astley - Never Gonna Give You Up (Official Music Video - High Resolution Stream)
-                </h1>
-
-                <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-800">
-                    <!-- Creator Profile & Subscriber Engine -->
-                    <div class="flex items-center space-x-3">
-                        <div class="relative">
-                            <img id="creatorAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Creator Avatar" class="w-11 h-11 rounded-full object-cover ring-2 ring-emerald-500">
-                            <span id="creatorBadge" class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-950 text-[9px] font-black px-1 rounded-full"><i class="fa-solid fa-check"></i></span>
-                        </div>
-                        <div>
-                            <div class="flex items-center space-x-2">
-                                <h3 id="creatorName" class="font-bold text-sm text-white">Rick Astley Official</h3>
-                                <span id="statusMonetized" class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-1.5 py-0.5 rounded font-semibold">40% Monetized</span>
-                            </div>
-                            <p class="text-xs text-slate-400"><span id="subCounter">14,200</span> Subscribers</p>
-                        </div>
-                        <button id="subBtn" onclick="toggleSubscribe()" class="ml-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-extrabold tracking-wide transition-all shadow-md shadow-emerald-500/20">
-                            SUBSCRIBE
-                        </button>
-                    </div>
-
-                    <!-- Video Actions & Report Trigger -->
-                    <div class="flex items-center space-x-2 sm:space-x-3">
-                        <!-- Like Counter Button -->
-                        <button id="likeBtn" onclick="toggleLike()" class="flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 transition-all">
-                            <i id="likeIcon" class="fa-regular fa-thumbs-up text-sm"></i>
-                            <span id="likeCounter">124,500</span>
-                        </button>
-
-                        <!-- Share Button -->
-                        <button onclick="copyShareLink()" class="flex items-center space-x-2 bg-slate-900 hover:bg-slate-800 border border-slate-700/80 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 transition-all">
-                            <i class="fa-solid fa-share text-sm"></i>
-                            <span class="hidden sm:inline">Share</span>
-                        </button>
-
-                        <!-- CRITICAL SECURITY REQUIREMENT: Neon Yellow Report Action -->
-                        <button onclick="openReportModal()" class="flex items-center space-x-2 bg-amber-400/10 hover:bg-amber-400/20 border border-amber-400/40 text-amber-400 px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
-                            <i class="fa-solid fa-triangle-exclamation"></i>
-                            <span>⚠️ Report Content</span>
-                        </button>
-                    </div>
-                </div>
+            <div class="p-3 bg-slate-950/80 rounded-xl border border-slate-800">
+              <span class="block text-2xl font-black text-slate-300">60%</span>
+              <span class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Platform Pool</span>
             </div>
+          </div>
 
-            <!-- LIVE COMMENTS ENGINE -->
-            <div class="bg-slate-900/50 rounded-2xl border border-slate-800 p-6 space-y-6">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-base text-white flex items-center space-x-2">
-                        <span>Comments</span>
-                        <span id="commentTotalBadge" class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full">3</span>
-                    </h3>
-                </div>
-
-                <!-- Input Field -->
-                <div class="flex space-x-3">
-                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-500 to-indigo-500 flex items-center justify-center font-bold text-xs text-white shrink-0" id="currentCommentUserAvatar">
-                        U
-                    </div>
-                    <div class="flex-1 flex flex-col space-y-2">
-                        <textarea id="commentInput" rows="2" placeholder="Add a public comment to ZESTAPLAY system..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl p-3 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 resize-none transition-all"></textarea>
-                        <div class="flex justify-end">
-                            <button onclick="submitComment()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 px-4 py-1.5 rounded-lg text-xs font-bold transition-all">
-                                Comment
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dynamic Comments Stream -->
-                <div id="commentsStream" class="space-y-4 pt-2">
-                    <div class="flex space-x-3">
-                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded-full object-cover">
-                        <div class="flex-1 space-y-1">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-xs font-bold text-white">Alex Rivera</span>
-                                <span class="text-[10px] text-slate-500">2 hours ago</span>
-                            </div>
-                            <p class="text-xs text-slate-300">The payout monetization engine on Zestaplay is operating extremely fast!</p>
-                        </div>
-                    </div>
-
-                    <div class="flex space-x-3">
-                        <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&w=80&q=80" class="w-8 h-8 rounded-full object-cover">
-                        <div class="flex-1 space-y-1">
-                            <div class="flex items-center space-x-2">
-                                <span class="text-xs font-bold text-white">David Chen</span>
-                                <span class="text-[10px] text-slate-500">5 hours ago</span>
-                            </div>
-                            <p class="text-xs text-slate-300">Great quality playback engine. Age-gate verification feature works like a charm.</p>
-                        </div>
-                    </div>
-                </div>
+          <div id="monetizationStatus" class="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-400">
+            <div class="flex items-center justify-between">
+              <span>Account Status:</span>
+              <span id="userVerificationBadge" class="font-bold text-amber-400">Unverified</span>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
 
-        <!-- RIGHT / DASHBOARDS & MONETIZATION SIDEBAR (4 COLS) -->
-        <aside class="lg:col-span-4 flex flex-col space-y-6">
-            
-            <!-- REVENUE SPLIT & MONETIZATION METRIC GRAPH CARD -->
-            <div class="bg-slate-900/80 rounded-2xl border border-slate-800 p-5 space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-bold text-white flex items-center space-x-2">
-                        <i class="fa-solid fa-chart-pie text-emerald-400"></i>
-                        <span>Platform Monetization Model</span>
-                    </h3>
-                    <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded">Standard Split</span>
-                </div>
+      <!-- Quick Platform Actions -->
+      <div class="bg-slate-900/60 rounded-2xl border border-slate-800 p-5 backdrop-blur-sm space-y-3">
+        <h3 class="text-sm font-bold text-slate-200 mb-2">Platform Features</h3>
+        <button onclick="openModal('registerModal')" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition text-left flex items-center justify-between">
+          <span><i class="fa-solid fa-id-card text-brand-500 mr-2"></i> Complete Identity Verification</span>
+          <i class="fa-solid fa-chevron-right text-slate-500 text-xs"></i>
+        </button>
+        <button onclick="openModal('reportModal')" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700 transition text-left flex items-center justify-between">
+          <span><i class="fa-solid fa-shield-halved text-rose-400 mr-2"></i> Security & Moderation Center</span>
+          <i class="fa-solid fa-chevron-right text-slate-500 text-xs"></i>
+        </button>
+      </div>
 
-                <!-- Graphic Split Visualizer -->
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs font-semibold">
-                        <span class="text-emerald-400">Creator Earnings: 40%</span>
-                        <span class="text-indigo-400">Platform Maintenance: 60%</span>
-                    </div>
-                    <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden flex">
-                        <div class="w-[40%] bg-gradient-to-r from-emerald-500 to-teal-400 h-full"></div>
-                        <div class="w-[60%] bg-gradient-to-r from-indigo-500 to-purple-600 h-full"></div>
-                    </div>
-                </div>
+    </aside>
 
-                <div class="grid grid-cols-2 gap-3 pt-2 text-center">
-                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                        <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Default Threshold</span>
-                        <span id="subLimitDisplay" class="text-base font-extrabold text-white">20 Subs</span>
-                    </div>
-                    <div class="bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                        <span class="block text-[10px] text-slate-400 uppercase tracking-wider">Setup Portal Fee</span>
-                        <span id="setupFeeDisplay" class="text-base font-extrabold text-emerald-400">$9.99 USD</span>
-                    </div>
-                </div>
-            </div>
+  </main>
 
-            <!-- PAYMENT GATEWAY SETUP TABS (bKash / Nagad / Binance) -->
-            <div class="bg-slate-900/80 rounded-2xl border border-slate-800 p-5 space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-bold text-white flex items-center space-x-2">
-                        <i class="fa-solid fa-wallet text-indigo-400"></i>
-                        <span>Creator Monetization Fee Portal</span>
-                    </h3>
-                </div>
-                <p class="text-xs text-slate-400">Unlock your 40% channel revenue share by completing the mandatory platform verification setup fee.</p>
-                
-                <!-- Gateway Selector Tabs -->
-                <div class="grid grid-cols-3 gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 text-center text-xs font-semibold">
-                    <button onclick="switchTab('bkash')" id="tab-bkash" class="py-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 transition-all">bKash</button>
-                    <button onclick="switchTab('nagad')" id="tab-nagad" class="py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Nagad</button>
-                    <button onclick="switchTab('binance')" id="tab-binance" class="py-1.5 rounded-lg text-slate-400 hover:text-white transition-all">Binance</button>
-                </div>
+  <!-- USER REGISTRATION / AGE-GATE MODAL -->
+  <div id="registerModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 relative overflow-hidden">
+      <button onclick="closeModal('registerModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
-                <!-- Payment Details Container -->
-                <div id="paymentTabContent" class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-slate-400">Merchant Account:</span>
-                        <span id="gatewayNumber" class="font-mono text-emerald-400 font-bold">+880 1700 000 000</span>
-                    </div>
-                    <div class="flex justify-between items-center text-xs">
-                        <span class="text-slate-400">Required Amount:</span>
-                        <span class="font-bold text-white">$9.99 USD / Equiv</span>
-                    </div>
-                    <input type="text" placeholder="Enter Transaction ID (TrxID)" class="w-full bg-slate-900 border border-slate-700/80 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-emerald-500">
-                    <button onclick="alert('Transaction submitted for verification. Monetization status will update within 10 minutes.')" class="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-bold text-xs py-2 rounded-lg hover:opacity-95 transition-all">
+      <div class="mb-5">
+        <h2 class="text-xl font-bold text-white">Platform Registration</h2>
+        <p class="text-xs text-slate-400 mt-1">Complete age verification to unlock full ZESTAPLAY features.</p>
+      </div>
+
+      <form id="registrationForm" onsubmit="handleRegistrationSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
+          <input type="text" id="regName" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" placeholder="John Doe" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Email Address</label>
+          <input type="email" id="regEmail" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" placeholder="john@example.com" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
+          <input type="tel" id="regPhone" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" placeholder="+1 (555) 000-0000" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Physical Address</label>
+          <input type="text" id="regAddress" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" placeholder="123 Tech Blvd, Suite 100" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Age Verification</label>
+          <input type="number" id="regAge" min="1" max="120" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" placeholder="Enter your age" />
+          <p class="text-[10px] text-slate-500 mt-1">Users under 18 will be restricted from monetization earnings.</p>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-accent hover:opacity-90 text-white font-bold text-xs shadow-lg shadow-brand-600/20 transition">
+          Register & Save Profile
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTENT REPORT MODAL -->
+  <div id="reportModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 relative">
+      <button onclick="closeModal('reportModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-rose-400 flex items-center gap-2">
+          <i class="fa-solid fa-shield-cat"></i> Report Content
+        </h2>
+        <p class="text-xs text-slate-400 mt-1">Submit reports directly to database moderation feed.</p>
+      </div>
+
+      <form id="reportForm" onsubmit="handleReportSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Reporter Username/Email</label>
+          <input type="text" id="reportReporter" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-rose-500" placeholder="anonymous or your handle" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Reason for Report</label>
+          <select id="reportCategory" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-rose-500">
+            <option value="Inappropriate Content">Inappropriate Content</option>
+            <option value="Copyright Violation">Copyright Violation</option>
+            <option value="Spam / Misleading">Spam / Misleading</option>
+            <option value="Harassment">Harassment</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Detailed Explanation</label>
+          <textarea id="reportDetails" rows="3" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-rose-500" placeholder="Describe the timestamp or violation..."></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-lg shadow-rose-600/20 transition">
+          Submit Flag to Firebase
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD MODAL -->
+  <div id="adminModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-6 relative max-h-[85vh] flex flex-col">
+      <button onclick="closeModal('adminModal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Admin Login View -->
+      <div id="adminLoginView" class="py-6">
+        <h2 class="text-xl font-bold text-white mb-2">Admin Panel Access</h2>
+        <p class="text-xs text-slate-400 mb-4">Enter master passkey to review live Firebase moderation queue.</p>
+        
+        <form onsubmit="handleAdminLogin(event)" class="space-y-4 max-w-sm">
+          <div>
+            <input type="password" id="adminPasskey" placeholder="Enter Admin Password (admin123)" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500" />
+          </div>
+          <button type="submit" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-lg shadow-brand-600/20 transition">
+            Authenticate Access
+          </button>
+        </form>
+      </div>
+
+      <!-- Admin Dashboard Feed View (Hidden by default) -->
+      <div id="adminFeedView" class="hidden flex-1 flex flex-col min-h-0">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800 mb-4">
+          <div>
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-user-shield text-brand-500"></i> Firebase Live Moderation Feed
+            </h2>
+            <p class="text-xs text-slate-400">Real-time live queue from <code class="text-brand-400">reports/</code> node</p>
+          </div>
+          <button onclick="logoutAdmin()" class="text-xs text-rose-400 hover:underline">Lock Session</button>
+        </div>
+
+        <div id="adminReportsContainer" class="flex-1 overflow-y-auto space-y-3 pr-2 scrollbar-thin scrollbar-thumb-slate-800">
+          <div class="text-center py-6 text-slate-500 text-xs">Loading live reports from database...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC & FIREBASE INITIALIZATION -->
+  <script>
+    // 1. Firebase Credentials Setup & Initialization
+    const firebaseConfig = {
+      apiKey: "AIzaSyDlcB_VC7tHM96lDLbKnXXk",
+      authDomain: "zestaplay.firebaseapp.com",
+      databaseURL: "https://zestaplay-default-rtdb.firebaseio.com",
+      projectId: "zestaplay",
+      storageBucket: "zestaplay.firebasestorage.app",
+      messagingSenderId: "624332564570",
+      appId: "1:624332564570:web:0a49704fde"
+    };
+
+    // Initialize Firebase Compat Application
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const db = firebase.database();
+
+    // Local Application State Flags
+    let totalCommentsCount = 0;
+    let isUserMonetized = false;
+
+    // Helper Functions for Modals
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.remove('hidden');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    function installApp() {
+      alert("📲 ZESTAPLAY Progressive Web App installation initialized!");
+    }
+
+    // 2. User Registration / Age-Gate Functionality
+    function handleRegistrationSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const phone = document.getElementById('regPhone').value;
+      const address = document.getElementById('regAddress').value;
+      const age = parseInt(document.getElementById('regAge').value, 10);
+
+      const isEligible = age >= 18;
+
+      const userData = {
+        name: name,
+        email: email,
+        phone: phone,
+        address: address,
+        age: age,
+        monetizationEligible: isEligible,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      };
+
+      // Push securely to Firebase Database 'users/' path
+      db.ref('users/').push(userData)
+        .then(() => {
+          alert(`Registration successful! ${isEligible ? 'Monetization Status: ELIGIBLE (18+)' : 'Age Requirement Notice: Under 18 - Monetization Disabled'}`);
+          
+          // Update UI Status
+          const badge = document.getElementById('userVerificationBadge');
+          if (isEligible) {
+            badge.innerText = 'Verified (18+)';
+            badge.className = 'font-bold text-emerald-400';
+          } else {
+            badge.innerText = 'Restricted (<18)';
+            badge.className = 'font-bold text-rose-400';
+          }
+          
+          closeModal('registerModal');
+          document.getElementById('registrationForm').reset();
+        })
+        .catch(err => {
+          console.error("Firebase User Push Error: ", err);
+          alert("Error saving record to database. Please check console.");
+        });
+    }
+
+    // 3. Content Reporting System Functionality
+    function handleReportSubmit(e) {
+      e.preventDefault();
+      const reporter = document.getElementById('reportReporter').value;
+      const category = document.getElementById('reportCategory').value;
+      const details = document.getElementById('reportDetails').value;
+
+      const reportData = {
+        reporter: reporter,
+        category: category,
+        details: details,
+        status: 'PENDING',
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      };
+
+      // Direct write into reports/ node in Firebase
+      db.ref('reports/').push(reportData)
+        .then(() => {
+          alert("⚠️ Content report securely submitted to moderation database queue.");
+          closeModal('reportModal');
+          document.getElementById('reportForm').reset();
+        })
+        .catch(err => {
+          console.error("Firebase Report Push Error: ", err);
+          alert("Error submitting report.");
+        });
+    }
+
+    // 4. Real-time Live Comments Synchronization
+    function handleCommentSubmit(e) {
+      e.preventDefault();
+      const author = document.getElementById('commentAuthor').value;
+      const text = document.getElementById('commentText').value;
+
+      const commentData = {
+        author: author,
+        text: text,
+        timestamp: firebase.database.ServerValue.TIMESTAMP
+      };
+
+      // Push text, author, and timestamp into Firebase comments/
+      db.ref('comments/').push(commentData)
+        .then(() => {
+          document.getElementById('commentText').value = '';
+        })
+        .catch(err => {
+          console.error("Firebase Comment Push Error: ", err);
+        });
+    }
+
+    // Real-time listener for comments node
+    db.ref('comments/').on('child_added', (snapshot) => {
+      const comment = snapshot.val();
+      const stream = document.getElementById('commentsStream');
+      const emptyMsg = document.getElementById('noCommentsMsg');
+      if (emptyMsg) emptyMsg.remove();
+
+      totalCommentsCount++;
+      document.getElementById('commentCounter').innerText = `${totalCommentsCount} Comments`;
+
+      const commentNode = document.createElement('div');
+      commentNode.className = 'bg-slate-950/80 border border-slate-800 rounded-xl p-3 text-xs flex flex-col gap-1 transition animate-fade-in';
+      
+      const timeStr = comment.timestamp ? new Date(comment.timestamp).toLocaleTimeString() : 'Just now';
+      
+      commentNode.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-brand-400">${escapeHtml(comment.author || 'Anonymous')}</span>
+          <span class="text-[10px] text-slate-500 font-mono">${timeStr}</span>
+        </div>
+        <p class="text-slate-300">${escapeHtml(comment.text || '')}</p>
