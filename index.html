@@ -1,348 +1,329 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NATKFLIX PRO - Streaming & Revenue Platform</title>
+    <title>NATKFLIX PRO - Monetized Streaming Platform</title>
+
+    <!-- Web App Manifest (Embedded Data URI for zero external file dependency) -->
+    <link rel="manifest" href='data:application/manifest+json,{"name":"NATKFLIX PRO","short_name":"NATKFLIX","start_url":".","display":"standalone","background_color":"#090d16","theme_color":"#e11d48","icons":[{"src":"https://cdn-icons-png.flaticon.com/512/1179/1179069.png","sizes":"512x512","type":"image/png"}]}'>
+    <meta name="theme-color" content="#e11d48">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NATKFLIX PRO">
+
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        netflixRed: '#E50914',
-                        bkashPink: '#e2136e',
-                        nagadOrange: '#f7931e',
-                        binanceYellow: '#F0B90B',
+                        brand: {
+                            50: '#fff1f2',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            700: '#be123c',
+                            900: '#881337',
+                        }
                     }
                 }
             }
         }
     </script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #18181b;
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(225, 29, 72, 0.5);
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #3f3f46;
-            border-radius: 3px;
+        .glow-btn {
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
         }
     </style>
 </head>
-<body class="bg-zinc-950 text-zinc-100 min-h-screen flex flex-col font-sans antialiased selection:bg-red-600 selection:text-white">
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans selection:bg-brand-600 selection:text-white pb-12">
 
-    <!-- TOP HEADER -->
-    <header class="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 px-4 lg:px-8 py-3.5 flex items-center justify-between">
-        <div class="flex items-center space-x-6">
-            <div class="flex items-center space-x-2 cursor-pointer" onclick="location.reload()">
-                <span class="bg-red-600 text-white font-black tracking-tighter text-xl px-2.5 py-0.5 rounded shadow-lg shadow-red-600/30">NATKFLIX</span>
-                <span class="text-xs font-bold tracking-widest text-zinc-400 uppercase">PRO</span>
+    <!-- NAVBAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-rose-400 flex items-center justify-center shadow-lg shadow-brand-600/30">
+                        <i class="fa-solid font-black fa-play text-white text-lg ml-0.5"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-rose-400">NATKFLIX</span>
+                        <span class="text-xs font-bold px-1.5 py-0.5 bg-brand-600/30 border border-brand-500/40 text-brand-500 rounded ml-1 tracking-widest uppercase">PRO</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-300">
+                    <a href="#player-section" class="hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-[#fa-tv] fa-tv"></i> Player</a>
+                    <a href="#revenue-section" class="hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-chart-pie"></i> 40/60 Split</a>
+                    <a href="#gateway-section" class="hover:text-brand-500 transition-colors flex items-center gap-2"><i class="fa-solid fa-wallet"></i> Setup Gateway</a>
+                    <button onclick="openAdminModal()" class="hover:text-amber-400 transition-colors flex items-center gap-1.5 bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg text-amber-400">
+                        <i class="fa-solid fa-user-shield"></i> Admin Panel
+                    </button>
+                </nav>
+
+                <!-- PWA INSTALL BUTTON & ACTION -->
+                <div class="flex items-center space-x-4">
+                    <!-- Prominent Install App Button -->
+                    <button id="pwaInstallBtn" class="animate-bounce glow-btn bg-gradient-to-r from-brand-600 via-rose-500 to-amber-500 hover:from-brand-500 hover:to-rose-400 text-white font-extrabold px-5 py-2.5 rounded-full text-sm shadow-xl flex items-center gap-2 border border-rose-300/40 transition-all transform hover:scale-105 active:scale-95">
+                        <i class="fa-solid fa-mobile-screen-button text-base"></i>
+                        <span>📲 Install App</span>
+                    </button>
+                </div>
             </div>
-            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-zinc-400">
-                <a href="#" class="text-white hover:text-red-500 transition">Home</a>
-                <a href="#" class="hover:text-white transition">Trending</a>
-                <a href="#" class="hover:text-white transition">Live Streams</a>
-                <a href="#" class="hover:text-white transition">Monetization</a>
-            </nav>
-        </div>
-
-        <div class="flex items-center space-x-3">
-            <!-- Revenue Quick Stats Badge -->
-            <div class="hidden sm:flex items-center bg-zinc-900 border border-zinc-800 rounded-full px-3 py-1 space-x-2 text-xs">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span class="text-zinc-400">Pool:</span>
-                <span id="headerTotalPool" class="font-bold text-emerald-400">৳ 125,000</span>
-            </div>
-
-            <!-- Pay / Donate Button -->
-            <button onclick="openPaymentModal()" class="bg-red-600 hover:bg-red-700 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-lg transition shadow-lg shadow-red-600/20 flex items-center space-x-1.5">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>Support Creator</span>
-            </button>
-
-            <!-- Admin Button -->
-            <button onclick="openAdminModal()" title="Admin Dashboard" class="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/60 text-zinc-300 p-2 rounded-lg transition text-sm flex items-center justify-center">
-                🛠️ <span class="hidden md:inline ml-1 font-semibold text-xs">Admin</span>
-            </button>
         </div>
     </header>
 
-    <!-- MAIN CONTENT -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- LEFT COLUMN: VIDEO PLAYER & METADATA -->
-        <div class="lg:col-span-2 space-y-5">
-            
-            <!-- RAW YOUTUBE IFRAME CONTAINER (NO OVERLAYS, FULL TOUCH EXPOSED) -->
-            <div class="w-full aspect-video bg-black rounded-2xl overflow-hidden border border-zinc-800 shadow-2xl">
-                <iframe 
-                    id="youtubePlayer"
-                    class="w-full h-full border-0" 
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&controls=1&rel=0" 
-                    title="NATKFLIX PRO Video Player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                    allowfullscreen>
-                </iframe>
-            </div>
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 space-y-12">
 
-            <!-- Video Info Header -->
-            <div class="space-y-3 bg-zinc-900/60 border border-zinc-800/60 p-5 rounded-2xl">
-                <div class="flex flex-wrap items-center justify-between gap-2">
-                    <h1 class="text-xl sm:text-2xl font-bold text-white tracking-tight">NATKFLIX Exclusive: Premium Video Broadcast</h1>
-                    <span class="bg-red-500/10 text-red-400 border border-red-500/20 text-xs px-2.5 py-1 rounded-full font-medium">4K Ultra HD</span>
+        <!-- HERO & FEATURED PLAYER SECTION -->
+        <section id="player-section" class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold mb-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> STREAMING NOW • MONETIZED
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight">NATKFLIX Original: High Voltage Drama</h1>
+                    <p class="text-slate-400 text-sm mt-1">Live Ad-Revenue Integration Active • Raw Exposed Controls</p>
                 </div>
-
-                <div class="flex flex-wrap items-center justify-between text-xs sm:text-sm text-zinc-400 pt-2 border-t border-zinc-800/60 gap-4">
-                    <div class="flex items-center space-x-4">
-                        <span class="flex items-center space-x-1">
-                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
-                            <span>1,420,890 Views</span>
-                        </span>
-                        <span>•</span>
-                        <span>Uploaded 2 hours ago</span>
-                    </div>
-
-                    <div class="flex items-center space-x-3">
-                        <button class="flex items-center space-x-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 px-3 py-1.5 rounded-lg transition text-xs font-semibold">
-                            👍 <span>48K</span>
-                        </button>
-                        <button onclick="openPaymentModal()" class="flex items-center space-x-1.5 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 px-3 py-1.5 rounded-lg transition text-xs font-semibold">
-                            💰 <span>Support Creator</span>
-                        </button>
-                    </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-xs text-slate-400">Live Status:</span>
+                    <span class="bg-slate-900 border border-slate-700 px-3 py-1.5 rounded-lg text-xs font-mono text-emerald-400 flex items-center gap-2">
+                        <i class="fa-solid fa-bolt text-amber-400"></i> Ad-Server Connected
+                    </span>
                 </div>
             </div>
 
-            <!-- Creator Channel Bar -->
-            <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800/60 p-4 rounded-2xl">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center text-white font-bold text-lg shadow-md">
-                        NK
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-white text-base">NATKFLIX Official</h3>
-                        <p class="text-xs text-zinc-400">850K Subscribers</p>
-                    </div>
+            <!-- YouTube Exposed Player Container -->
+            <div class="relative w-full rounded-3xl overflow-hidden glass-panel border border-slate-800 shadow-2xl glow-effect">
+                <div class="relative aspect-video w-full bg-black">
+                    <!-- Standard YouTube Iframe Player with Full Exposed Built-in Native Controls -->
+                    <iframe 
+                        id="ytPlayer"
+                        class="w-full h-full border-0" 
+                        src="https://www.youtube.com/embed/aqz-KE-bpKQ?enablejsapi=1&controls=1&rel=0&modestbranding=0&autoplay=0" 
+                        title="NATKFLIX Stream Video"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
                 </div>
-                <button class="bg-zinc-100 hover:bg-white text-zinc-950 font-bold px-5 py-2 rounded-xl text-xs sm:text-sm transition shadow">
-                    Subscribe
-                </button>
-            </div>
-        </div>
-
-        <!-- RIGHT COLUMN: 40-60 PROFIT SPLIT & SIDEBAR -->
-        <div class="space-y-6">
-            
-            <!-- 40-60 REVENUE SPLIT LIVE TRACKER CARD -->
-            <div class="bg-gradient-to-br from-zinc-900 to-zinc-900/90 border border-zinc-800 rounded-2xl p-5 shadow-xl space-y-4">
-                <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-lg">📊</span>
-                        <h2 class="font-bold text-white text-base">Revenue Split System</h2>
-                    </div>
-                    <span class="text-xs bg-red-600/20 text-red-400 border border-red-500/30 font-semibold px-2 py-0.5 rounded">Live 60 / 40 Split</span>
-                </div>
-
-                <!-- Split Visualizer Bar -->
-                <div class="space-y-2">
-                    <div class="flex justify-between text-xs font-bold">
-                        <span class="text-emerald-400">Creator Share (60%)</span>
-                        <span class="text-indigo-400">Platform Share (40%)</span>
-                    </div>
-                    <div class="h-4 w-full bg-zinc-800 rounded-full overflow-hidden flex p-0.5 border border-zinc-700/50">
-                        <div id="barCreator" class="h-full bg-emerald-500 rounded-l-full transition-all duration-500" style="width: 60%"></div>
-                        <div id="barPlatform" class="h-full bg-indigo-500 rounded-r-full transition-all duration-500" style="width: 40%"></div>
-                    </div>
-                </div>
-
-                <!-- Amount Breakdown -->
-                <div class="grid grid-cols-2 gap-3 pt-2">
-                    <div class="bg-zinc-950/60 border border-emerald-500/20 p-3 rounded-xl">
-                        <p class="text-[11px] font-medium text-zinc-400">Creator Earnings</p>
-                        <p id="calcCreatorShare" class="text-lg font-black text-emerald-400">৳ 75,000</p>
-                        <p class="text-[10px] text-zinc-500 mt-0.5">Direct Payout (60%)</p>
-                    </div>
-                    <div class="bg-zinc-950/60 border border-indigo-500/20 p-3 rounded-xl">
-                        <p class="text-[11px] font-medium text-zinc-400">Platform Fund</p>
-                        <p id="calcPlatformShare" class="text-lg font-black text-indigo-400">৳ 50,000</p>
-                        <p class="text-[10px] text-zinc-500 mt-0.5">Maintenance (40%)</p>
-                    </div>
-                </div>
-
-                <button onclick="openPaymentModal()" class="w-full py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-semibold text-xs rounded-xl transition shadow-lg shadow-red-600/20">
-                    Add Funds via Gateway
-                </button>
-            </div>
-
-            <!-- RECOMMENDED PLAYLIST -->
-            <div class="bg-zinc-900/60 border border-zinc-800/60 rounded-2xl p-4 space-y-3">
-                <h3 class="text-sm font-bold text-zinc-300 px-1">Up Next</h3>
                 
-                <div class="space-y-3">
-                    <!-- Item 1 -->
-                    <div onclick="changeVideo('https://www.youtube.com/embed/L_LUpnjgPso')" class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800/60 transition cursor-pointer group">
-                        <div class="w-24 aspect-video bg-zinc-800 rounded-lg overflow-hidden flex-shrink-0 relative border border-zinc-700/40">
-                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&auto=format&fit=crop&q=60" class="w-full h-full object-cover" alt="Thumb">
+                <!-- Video Quick Info Bar -->
+                <div class="p-4 sm:p-6 flex flex-wrap items-center justify-between gap-4 bg-slate-900/90 border-t border-slate-800">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-brand-500 font-bold border border-slate-700">
+                            <i class="fa-solid fa-clapperboard text-xl"></i>
                         </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-xs font-semibold text-zinc-200 group-hover:text-red-400 transition truncate">NATKFLIX Cyberpunk Documentary</h4>
-                            <p class="text-[11px] text-zinc-400 mt-0.5">NATKFLIX Studio</p>
-                            <p class="text-[10px] text-zinc-500">245K views</p>
-                        </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div onclick="changeVideo('https://www.youtube.com/embed/fJ9rUzIMcZQ')" class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800/60 transition cursor-pointer group">
-                        <div class="w-24 aspect-video bg-zinc-800 rounded-lg overflow-hidden flex-shrink-0 relative border border-zinc-700/40">
-                            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=300&auto=format&fit=crop&q=60" class="w-full h-full object-cover" alt="Thumb">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-xs font-semibold text-zinc-200 group-hover:text-red-400 transition truncate">Anime Full Episode Live Broadcast</h4>
-                            <p class="text-[11px] text-zinc-400 mt-0.5">Anime Central</p>
-                            <p class="text-[10px] text-zinc-500">890K views</p>
+                        <div>
+                            <h4 class="font-bold text-white text-base">Cinema Series: Season 1 Ep. 04</h4>
+                            <p class="text-xs text-slate-400">4K Ultra HD • Dolby Atmos Audio</p>
                         </div>
                     </div>
-
-                    <!-- Item 3 -->
-                    <div onclick="changeVideo('https://www.youtube.com/embed/5qap5aO4i9A')" class="flex items-center space-x-3 p-2 rounded-xl hover:bg-zinc-800/60 transition cursor-pointer group">
-                        <div class="w-24 aspect-video bg-zinc-800 rounded-lg overflow-hidden flex-shrink-0 relative border border-zinc-700/40">
-                            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300&auto=format&fit=crop&q=60" class="w-full h-full object-cover" alt="Thumb">
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <h4 class="text-xs font-semibold text-zinc-200 group-hover:text-red-400 transition truncate">4K Cinematic Nature Relaxation</h4>
-                            <p class="text-[11px] text-zinc-400 mt-0.5">Earth Live</p>
-                            <p class="text-[10px] text-zinc-500">1.2M views</p>
-                        </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="triggerMonetizationToast()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold rounded-xl border border-slate-700 flex items-center gap-2 transition">
+                            <i class="fa-solid fa-dollar-sign text-emerald-400"></i> Monetize View
+                        </button>
+                        <button onclick="shareStream()" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold rounded-xl flex items-center gap-2 transition">
+                            <i class="fa-solid fa-share-nodes"></i> Share Link
+                        </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- 40-60 REVENUE SPLIT DASHBOARD -->
+        <section id="revenue-section" class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-white flex items-center gap-3">
+                        <i class="fa-solid fa-chart-pie text-brand-500"></i> Revenue Split Architecture (40/60)
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-1">Automated real-time distribution engine for content creators & infrastructure support.</p>
+                </div>
+                <div class="inline-flex bg-slate-900 p-1.5 rounded-xl border border-slate-800 text-xs font-semibold">
+                    <span class="bg-brand-600 text-white px-3 py-1.5 rounded-lg shadow">Creator: 40%</span>
+                    <span class="text-slate-400 px-3 py-1.5">Platform: 60%</span>
+                </div>
+            </div>
+
+            <!-- Split Metric Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Creator Earnings -->
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 relative overflow-hidden group hover:border-brand-500/50 transition">
+                    <div class="absolute top-0 right-0 p-4 text-brand-500/20 group-hover:text-brand-500/30 transition">
+                        <i class="fa-solid fa-user-ninja text-6xl"></i>
+                    </div>
+                    <span class="text-xs font-bold text-brand-400 tracking-wider uppercase">Creator Share (40%)</span>
+                    <h3 class="text-3xl font-black text-white mt-2" id="creatorEarningDisplay">$4,280.40</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fa-solid fa-circle-check text-emerald-400"></i> Direct Payout Ready
+                    </p>
+                    <div class="w-full bg-slate-800 rounded-full h-2 mt-4 overflow-hidden">
+                        <div class="bg-brand-500 h-full rounded-full" style="width: 40%"></div>
+                    </div>
+                </div>
+
+                <!-- Platform Infrastructure Split -->
+                <div class="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 relative overflow-hidden group hover:border-slate-700 transition">
+                    <div class="absolute top-0 right-0 p-4 text-slate-700/30">
+                        <i class="fa-solid fa-server text-6xl"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-400 tracking-wider uppercase">Platform & Infra Split (60%)</span>
+                    <h3 class="text-3xl font-black text-white mt-2" id="platformEarningDisplay">$6,420.60</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fa-solid fa-microchip text-slate-400"></i> Covers CDN, Ads & Servers
+                    </p>
+                    <div class="w-full bg-slate-800 rounded-full h-2 mt-4 overflow-hidden">
+                        <div class="bg-slate-400 h-full rounded-full" style="width: 60%"></div>
+                    </div>
+                </div>
+
+                <!-- Total Pool Generated -->
+                <div class="bg-gradient-to-br from-slate-900 via-slate-900 to-rose-950/40 p-6 rounded-2xl border border-brand-500/20 relative overflow-hidden">
+                    <span class="text-xs font-bold text-amber-400 tracking-wider uppercase">Gross Ad Pool</span>
+                    <h3 class="text-3xl font-black text-white mt-2" id="totalPoolDisplay">$10,701.00</h3>
+                    <p class="text-xs text-slate-400 mt-2 flex items-center gap-1">
+                        <i class="fa-solid fa-globe text-amber-400"></i> Global Ad Impressions
+                    </p>
+                    <div class="mt-4 flex items-center gap-2">
+                        <span class="text-xs text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20 font-bold">+18.4% this week</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Split Interactive Calculator -->
+            <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 space-y-4">
+                <div class="flex justify-between items-center">
+                    <label for="revRange" class="text-sm font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-brand-500"></i> Interactive Revenue Split Simulator
+                    </label>
+                    <span class="text-sm font-mono font-bold text-brand-400" id="rangeValueDisplay">Estimated Impressions: 500,000 Views</span>
+                </div>
+                <input type="range" id="revRange" min="100000" max="2000000" step="50000" value="500000" 
+                       class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-brand-500">
+                <div class="grid grid-cols-2 gap-4 text-center pt-2">
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400">Calculated Creator 40%:</span>
+                        <div class="text-lg font-bold text-emerald-400" id="simCreator">$2,000.00</div>
+                    </div>
+                    <div class="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="text-xs text-slate-400">Calculated Platform 60%:</span>
+                        <div class="text-lg font-bold text-slate-300" id="simPlatform">$3,000.00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SETUP FEE & VERIFICATION PAYMENT GATEWAY -->
+        <section id="gateway-section" class="glass-panel rounded-3xl p-6 sm:p-8 border border-slate-800 space-y-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <span class="text-xs font-bold text-brand-500 uppercase tracking-widest bg-brand-500/10 px-3 py-1 rounded-full border border-brand-500/20">Monetization Verification</span>
+                <h2 class="text-3xl font-black text-white">Creator Setup Fee Gateway</h2>
+                <p class="text-slate-400 text-sm">Pay the one-time platform onboarding & verification setup fee ($10 / 1,000 BDT) to activate 40% payout withdrawals.</p>
+            </div>
+
+            <div class="max-w-xl mx-auto bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
+                <!-- Payment Method Selector Tabs -->
+                <div class="grid grid-cols-3 border-b border-slate-800 text-center font-bold text-sm bg-slate-950/60">
+                    <button id="tab-bkash" onclick="switchGateway('bkash')" class="py-4 border-b-2 border-brand-500 text-brand-500 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-[#fa-mobile] fa-mobile-button text-pink-500"></i> bKash
+                    </button>
+                    <button id="tab-nagad" onclick="switchGateway('nagad')" class="py-4 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-building-columns text-orange-500"></i> Nagad
+                    </button>
+                    <button id="tab-binance" onclick="switchGateway('binance')" class="py-4 border-b-2 border-transparent text-slate-400 hover:text-white flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-coins text-amber-400"></i> Binance Pay
+                    </button>
+                </div>
+
+                <!-- Tab Body Content -->
+                <div class="p-6 space-y-6">
+                    <!-- Dynamic Details Box -->
+                    <div id="gatewayDetails" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-sm space-y-2">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- Payment Submission Form -->
+                    <form id="paymentForm" onsubmit="handlePaymentSubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Sender Account Number / Wallet</label>
+                            <input type="text" required placeholder="017XXXXXXXX or Wallet Address" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Transaction ID (TrxID)</label>
+                            <input type="text" required placeholder="e.g. 9J87X1K2LQ" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 font-mono">
+                        </div>
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-brand-600 to-rose-500 hover:from-brand-500 hover:to-rose-400 text-white font-bold rounded-xl text-sm shadow-lg shadow-brand-600/30 transition">
+                            Submit Verification Fee
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="mt-auto border-t border-zinc-800/80 bg-zinc-950 py-6 text-center text-xs text-zinc-500 space-y-2">
-        <div class="flex justify-center space-x-4">
-            <span class="hover:text-zinc-400 cursor-pointer">Terms</span>
-            <span>•</span>
-            <span class="hover:text-zinc-400 cursor-pointer">Privacy Policy</span>
-            <span>•</span>
-            <span class="hover:text-zinc-400 cursor-pointer">Creator Agreement</span>
-        </div>
-        <p>© 2025 NATKFLIX PRO Inc. All Rights Reserved. Fully Native Mobile Player Touch Enabled.</p>
-    </footer>
-
-    <!-- PAYMENT GATEWAY MODAL (bKash, Nagad, Binance) -->
-    <div id="paymentModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-md w-full p-6 shadow-2xl relative space-y-5">
-            
-            <button onclick="closePaymentModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white p-1">
-                ✕
+    <!-- SECRET ADMIN MODAL (PASS: admin123) -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative">
+            <button onclick="closeAdminModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div class="space-y-1">
-                <h3 class="text-lg font-bold text-white flex items-center space-x-2">
-                    <span>💳</span>
-                    <span>Payment Gateway</span>
-                </h3>
-                <p class="text-xs text-zinc-400">Support creator. Revenue auto-splits (60% Creator / 40% Platform).</p>
-            </div>
-
-            <!-- Gateway Tabs -->
-            <div class="grid grid-cols-3 gap-2 p-1 bg-zinc-950 rounded-xl border border-zinc-800">
-                <button id="tabBkash" onclick="switchGateway('bkash')" class="py-2 rounded-lg text-xs font-bold transition text-white bg-bkashPink shadow">
-                    bKash
-                </button>
-                <button id="tabNagad" onclick="switchGateway('nagad')" class="py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">
-                    Nagad
-                </button>
-                <button id="tabBinance" onclick="switchGateway('binance')" class="py-2 rounded-lg text-xs font-bold transition text-zinc-400 hover:text-white">
-                    Binance Pay
-                </button>
-            </div>
-
-            <!-- Dynamic Gateway Instruction Box -->
-            <div id="gatewayInfoBox" class="bg-zinc-950 p-4 rounded-xl border border-zinc-800 text-xs space-y-1.5">
-                <!-- Javascript fills this -->
-            </div>
-
-            <!-- Payment Form -->
-            <form id="paymentForm" onsubmit="handlePaymentSubmit(event)" class="space-y-4">
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-zinc-300">Amount (BDT / USDT)</label>
-                    <input type="number" id="payAmount" required min="10" placeholder="e.g. 500" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-red-500 transition">
+            <!-- Auth View -->
+            <div id="adminAuthView" class="space-y-4">
+                <div class="text-center space-y-2">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-400 rounded-full flex items-center justify-center mx-auto border border-amber-500/20">
+                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black text-white">Secret Admin Panel</h3>
+                    <p class="text-slate-400 text-xs">Enter system authorization password to unlock platform controls.</p>
                 </div>
-
-                <div class="space-y-1">
-                    <label class="text-xs font-semibold text-zinc-300">Transaction ID (TrxID)</label>
-                    <input type="text" id="payTrxId" required placeholder="e.g. 9J4K281L" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-3.5 py-2 text-sm text-white focus:outline-none focus:border-red-500 transition">
-                </div>
-
-                <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl text-sm transition shadow-lg shadow-red-600/30">
-                    Confirm & Split Payment
-                </button>
-            </form>
-
-        </div>
-    </div>
-
-    <!-- SECRET ADMIN MODAL (Pass: admin123) -->
-    <div id="adminModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-zinc-900 border border-zinc-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-6">
-            
-            <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white p-1">
-                ✕
-            </button>
-
-            <!-- AUTH SCREEN -->
-            <div id="adminAuthScreen" class="space-y-4 py-4 text-center">
-                <div class="w-12 h-12 bg-red-600/20 text-red-500 rounded-full flex items-center justify-center mx-auto text-xl border border-red-500/30">
-                    🛠️
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-white">Secret Admin Portal</h3>
-                    <p class="text-xs text-zinc-400">Enter administrator password to unlock financial control.</p>
-                </div>
-                
-                <form onsubmit="handleAdminLogin(event)" class="max-w-xs mx-auto space-y-3">
-                    <input type="password" id="adminPassword" placeholder="Password (admin123)" class="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-2 text-center text-sm text-white focus:outline-none focus:border-red-500">
-                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-xl text-xs transition">
-                        Authenticate Access
+                <div class="space-y-3 pt-2">
+                    <input type="password" id="adminPassInput" placeholder="Enter Admin Password (admin123)" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-400 font-mono">
+                    <button onclick="unlockAdmin()" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl text-sm transition shadow-lg shadow-amber-500/20">
+                        Unlock Dashboard
                     </button>
-                    <p id="adminAuthError" class="text-xs text-red-500 hidden">Invalid credentials!</p>
-                </form>
+                </div>
             </div>
 
-            <!-- ADMIN DASHBOARD SCREEN (Hidden by default) -->
-            <div id="adminDashboardScreen" class="hidden space-y-5">
-                <div class="flex items-center justify-between border-b border-zinc-800 pb-3">
-                    <div class="flex items-center space-x-2">
-                        <span class="text-xl">🛠️</span>
-                        <h3 class="font-bold text-white text-lg">Platform Financial Control</h3>
+            <!-- Unlocked Admin Controls -->
+            <div id="adminDashboardView" class="space-y-6 hidden">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <h4 class="font-bold text-white">Platform System Controls</h4>
                     </div>
-                    <button onclick="logoutAdmin()" class="text-xs text-zinc-400 hover:text-red-400">Logout</button>
+                    <span class="text-xs bg-amber-500/20 border border-amber-500/40 text-amber-400 px-2 py-0.5 rounded font-mono">SUPERADMIN</span>
                 </div>
 
-                <!-- Live Metrics -->
-                <div class="grid grid-cols-3 gap-3">
-                    <div class="bg-zinc-950 p-3 rounded-xl border border-zinc-800">
-                        <p class="text-[10px] text-zinc-400">Total System Pool</p>
-                        <p id="adminTotalPool" class="text-base font-black text-white">৳ 125,000</p>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Creator Revenue Split (%)</span>
+                        <input type="number" value="40" min="10" max="90" class="w-20 bg-slate-950 border border-slate-800 rounded px-2 py-1 text-right text-brand-400 font-bold">
                     </div>
-                    <div class="bg-zinc-950 p-3 rounded-xl border border-emerald-500/30">
-                        <p class="text-[10px] text-emerald-400">Creator Pool (60%)</p>
-                        <p id="adminCreatorPool" class="text-base font-black text-emerald-400">৳ 75,000</p>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Platform Split (%)</span>
+                        <input type="number" value="60" readonly class="w-20 bg-slate-950 border border-slate-800 text-slate-500 rounded px-2 py-1 text-right font-bold">
                     </div>
-                    <div class="bg-zinc-950 p-3 rounded-xl border border-indigo-500/30">
-                        <p class="text-[10px] text-indigo-400">Platform Pool (40%)</p>
-                        <p id="adminPlatformPool" class="text-base font-black text-indigo-400">৳ 50,000</p>
+                    <div class="flex justify-between items-center text-sm">
+                        <span class="text-slate-300">Auto Approve Verification</span>
+                        <input type="checkbox" checked class="w-5 h-5 accent-brand-500">
                     </div>
-                </div>
-
-                <!-- Transaction Log -->
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold text-zinc-300 uppercase tracking-wider">Recent System Transactions</h4>
-                    <div id
+                    <div class="pt-2">
+                        <button onclick="triggerToast('System Configurations Saved!')" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs rounded-xl border border-slate-700">
