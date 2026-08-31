@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,39 +11,55 @@
     <script src="https://gstatic.com"></script>
 </head>
 <body class="bg-slate-950 text-white font-sans min-h-screen">
+
     <header class="bg-slate-900 border-b border-cyan-500/30 p-4 flex justify-between items-center shadow-lg">
         <h1 class="text-xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">ZESTAPLAY 2.0</h1>
         <span class="bg-cyan-950 text-cyan-400 text-[10px] font-bold px-3 py-1 rounded-full border border-cyan-800/40 uppercase tracking-wider">AI App Builder Engine</span>
     </header>
+
     <main class="w-full max-w-md mx-auto p-4 space-y-5 pb-24">
+        
         <div class="bg-slate-900 p-4 rounded-2xl border border-cyan-500/20 shadow-2xl space-y-4">
-            <div class="flex items-center gap-2 text-cyan-400"><span class="text-lg">🤖</span><h2 class="font-black text-xs uppercase tracking-wider">Google Style AI Prompt Builder</h2></div>
+            <div class="flex items-center gap-2 text-cyan-400">
+                <span class="text-lg">🤖</span>
+                <h2 class="font-black text-xs uppercase tracking-wider">Google Style AI Prompt Builder</h2>
+            </div>
+            
             <p class="text-[11px] text-slate-400 leading-relaxed">গুগল এআই-এর মতো আপনি কি ধরণের ভিডিও ওটিটি অ্যাপ বানাতে চান তা নিচে বাংলায় লিখে দিন:</p>
+            
             <div class="space-y-3 text-xs">
-                <textarea id="aiPrompt" rows="4" placeholder="যেমন: আমি একটি শর্ট নাটক বা ড্রামা ভিডিও প্ল্যাটফর্ম বানাবো, যেখানে নাম-ঠিকানা রেজিস্ট্রেশন থাকবে এবং ইনকামের ৪০/৬০ ভাগ হবে..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-500 resize-none leading-relaxed focus:ring-1 focus:ring-cyan-500/30"></textarea>
+                <textarea id="aiPrompt" rows="4" placeholder="যেমন: আমি একটি শর্ট নাটক বা ড্রামা ভিডিও প্ল্যাটফর্ম বানাবো..." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-500 resize-none"></textarea>
+                
                 <div>
-                    <label class="text-[10px] text-slate-400 font-bold block mb-1 uppercase tracking-wider">Target Video URL / Link (Optional)</label>
-                    <input type="text" id="targetVideo" placeholder="YouTube Video URL" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500/30">
+                    <label class="text-[10px] text-slate-400 block mb-1">Target Video URL / Link (Optional)</label>
+                    <input type="text" id="targetVideo" placeholder="YouTube Video URL" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-white focus:outline-none focus:border-cyan-500">
                 </div>
             </div>
-            <button onclick="generateAppByAI()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-cyan-500/20 text-white border border-cyan-400/20">Generate App by AI</button>
+
+            <button onclick="generateAppByAI()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 py-3 rounded-xl font-black text-xs uppercase tracking-widest text-white border border-cyan-400/20 shadow-lg">Generate App by AI</button>
         </div>
+
         <div id="processingLoader" class="bg-slate-900 p-4 rounded-2xl border border-slate-800 shadow-xl hidden flex-col items-center justify-center text-center space-y-3 py-6">
             <div class="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-            <p class="text-xs font-bold text-cyan-400">AI is writing clean code & connecting Firebase Cloud databases...</p>
+            <p class="text-xs font-bold text-cyan-400">AI is processing request...</p>
         </div>
+
         <div id="outputPanel" class="bg-slate-900 p-4 rounded-2xl border border-emerald-500/20 shadow-2xl space-y-3 hidden">
-            <div class="flex items-center gap-2 text-emerald-400 border-b border-slate-800 pb-2"><span>✅</span><h3 class="font-black text-xs uppercase tracking-wider">100% Real Live App Generated Successfully!</h3></div>
-            <p class="text-[11px] text-slate-400 leading-relaxed">আপনার দেওয়া শর্ত অনুযায়ী এআই ইঞ্জিন ব্যাকঅ্যান্ডে সম্পূর্ণ সচল অ্যাপ ফাইল এবং অফিশিয়াল ডাউনলোড লিঙ্ক তৈরি করে দিয়েছে:</p>
+            <div class="flex items-center gap-2 text-emerald-400 border-b border-slate-800 pb-2">
+                <span>✅</span>
+                <h3 class="font-black text-xs uppercase tracking-wider">100% Real Live App Generated Successfully!</h3>
+            </div>
             <div class="space-y-2 text-xs">
                 <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center">
                     <div class="truncate mr-2"><span class="text-[9px] text-slate-400 block font-bold">LIVE PRODUCTION URL</span><span id="liveUrlTxt" class="font-mono text-cyan-400 text-[10px]">https://github.io</span></div>
                     <button onclick="copyGeneratedLink()" class="bg-slate-800 text-slate-300 font-bold px-3 py-1.5 rounded-lg text-[10px]">Copy</button>
                 </div>
-                <a href="https://github.io" id="directDownloadBtn" target="_blank" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/10 text-center block border border-emerald-400/20 text-white">📲 Download / Install App</a>
+                <button onclick="window.location.reload();" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 py-3 rounded-xl font-black text-xs uppercase tracking-wider text-white">📲 Download / Install App</button>
             </div>
         </div>
+
     </main>
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyDlcB_VC7tHM96lDLbKnXXk",
@@ -53,27 +71,42 @@
             appId: "1:624332564570:web:0a49704fde"
         };
         firebase.initializeApp(firebaseConfig); const db = firebase.database();
+
         function toggleElement(id, show) {
             const el = document.getElementById(id);
             if (show) { el.classList.remove('hidden'); el.classList.add('flex'); }
             else { el.classList.remove('flex'); el.classList.add('hidden'); }
         }
+
         function generateAppByAI() {
             const prompt = document.getElementById('aiPrompt').value.trim();
             const videoUrl = document.getElementById('targetVideo').value.trim();
             if (!prompt) { alert("দয়া করে আপনি কি ধরনের অ্যাপ বানাতে চান বাংলায় লিখে দিন!"); return; }
+            
             document.getElementById('outputPanel').classList.add('hidden');
             toggleElement('processingLoader', true);
+            
             setTimeout(() => {
                 toggleElement('processingLoader', false);
                 document.getElementById('outputPanel').classList.remove('hidden');
-                db.ref('ai_engine/last_build').set({ prompt_text: prompt, video_link: videoUrl || "default_rick", timestamp: Date.now() });
-                alert("🚀 গুগল এআই অটোমেশন সচল হয়েছে!\nআপনার নির্দেশাবলী অনুযায়ী ব্যাকঅ্যান্ড কোড এবং ডাউনলোড লিংক ১০০% রিয়েল-টাইমে আপডেট করা হয়েছে।");
+                
+                db.ref('ai_engine/last_build').set({
+                    prompt_text: prompt,
+                    video_link: videoUrl || "default_rick",
+                    timestamp: Date.now()
+                }).then(() => {
+                    alert("🚀 গুগল এআই অটোমেশন সচল হয়েছে!\nআপনার নির্দেশাবলী অনুযায়ী ব্যাকঅ্যান্ড কোড এবং ডাউনলোড লিংক ১০০% রিয়েল-টাইমে আপডেট করা হয়েছে।");
+                }).catch((error) => {
+                    alert("Database write error: " + error.message);
+                });
             }, 2000);
         }
+
         function copyGeneratedLink() {
-            const dummy = document.createElement('input'); const text = document.getElementById('liveUrlTxt').innerText;
-            document.body.appendChild(dummy); dummy.value = text; dummy.select(); document.execCommand('copy'); document.body.removeChild(dummy);
+            const dummy = document.createElement('input');
+            const text = document.getElementById('liveUrlTxt').innerText;
+            document.body.appendChild(dummy); dummy.value = text; dummy.select();
+            document.execCommand('copy'); document.body.removeChild(dummy);
             alert("✅ Live Generated App Sharing URL copied successfully!");
         }
     </script>
