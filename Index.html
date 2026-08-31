@@ -1,75 +1,84 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video App Builder</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #0f172a; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 500px; margin: auto; background: #1e293b; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        h2 { color: #38bdf8; }
-        textarea, input { width: 90%; padding: 12px; margin: 10px 0; border-radius: 6px; border: 1px solid #475569; background: #0f172a; color: white; }
-        button { width: 95%; padding: 12px; background: #0284c7; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
-        button:hover { background: #0369a1; }
-        .payment-box { display: none; background: #334155; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 5px solid #e11d48; text-align: left; }
-        .success-box { display: none; background: #14532d; padding: 15px; border-radius: 8px; margin-top: 15px; border-left: 5px solid #22c55e; }
-        .live-btn { background: #22c55e; display: inline-block; margin-top: 10px; text-decoration: none; padding: 10px 20px; border-radius: 6px; color: white; font-weight: bold; }
-    </style>
+    <title>ZESTAPLAY - Global Video Network</title>
+    <script src="https://tailwindcss.com"></script>
+    <script src="https://gstatic.com"></script>
+    <script src="https://gstatic.com"></script>
 </head>
-<body>
+<body class="bg-slate-950 text-white font-sans min-h-screen">
+    <header class="bg-slate-900 border-b border-purple-500/30 p-4 flex justify-between items-center shadow-lg">
+        <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">ZESTAPLAY</h1>
+        <div class="flex gap-2">
+            <button onclick="window.location.reload();" class="bg-gradient-to-r from-cyan-500 to-blue-600 px-3 py-1.5 rounded-xl text-xs font-bold shadow-lg shadow-cyan-500/20 active:scale-95 transition-all">Download / Install App</button>
+            <button onclick="toggleModal('adminModal', true)" class="text-slate-400 hover:text-white text-xs font-semibold px-2">Secret Admin</button>
+            <button onclick="toggleModal('regModal', true)" class="bg-gradient-to-r from-purple-600 to-pink-600 px-4 py-1.5 rounded-xl text-xs font-bold shadow-lg shadow-purple-500/20 active:scale-95 transition-all">Register / Verify</button>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto p-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 space-y-4">
+            <div class="aspect-video w-full rounded-2xl overflow-hidden border border-slate-800 bg-black shadow-2xl">
+                <iframe id="mainPlayer" class="w-full h-full" src="https://youtube.com" allowfullscreen></iframe>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800 flex justify-between items-center shadow-xl">
+                <div><h2 id="videoTitle" class="text-base font-bold tracking-wide">Official ZESTAPLAY Cyber Stream Event 2026</h2><p class="text-slate-400 text-[10px] mt-0.5">142,890 Viewers Live 4K Ultra HD</p></div>
+                <div class="flex gap-2">
+                    <button onclick="triggerLike()" id="likeBtn" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold active:scale-95 transition-all">Like <span id="likeCount">12.4K</span></button>
+                    <button onclick="toggleModal('shareModal', true)" class="bg-slate-800 hover:bg-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold active:scale-95 transition-all">Share</button>
+                    <button onclick="toggleModal('reportModal', true)" class="bg-red-950/40 text-red-400 border border-red-900/50 hover:bg-red-900/30 px-2 py-1.5 rounded-xl text-[10px] font-bold active:scale-95 transition-all">Report Content</button>
+                </div>
+            </div>
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800/80 space-y-3 shadow-xl">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2"><h3 class="font-bold text-sm text-purple-400 tracking-wide">LIVE CHAT FEED</h3><span id="commentTotal" class="bg-purple-950 text-purple-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-purple-800/50">0 Comments</span></div>
+                <div class="flex gap-2"><input type="text" id="comName" placeholder="Name" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 w-full max-w-[120px]"><input type="text" id="comMsg" placeholder="Join the live discussion..." class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-purple-500 flex-1"><button onclick="submitComment()" class="bg-purple-600 hover:bg-purple-500 px-4 py-2 rounded-xl font-bold text-xs shadow-lg shadow-purple-600/10 active:scale-95 transition-all">Comment</button></div>
+                <div id="commentBox" class="space-y-2 max-h-52 overflow-y-auto text-xs py-1 text-slate-300"><p id="noComText" class="text-center text-slate-500 py-3 italic">No live comments yet. Be the first to share your thoughts!</p></div>
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div class="bg-slate-900 p-4 rounded-2xl border border-slate-800/80 space-y-3 shadow-xl">
+                <h3 class="font-bold text-xs text-cyan-400 tracking-wide uppercase">PLATFORM MONETIZATION</h3>
+                <div class="w-full bg-slate-950 rounded-full h-2.5 overflow-hidden flex border border-slate-800"><div class="bg-purple-500 h-full w-[40%]"></div><div class="bg-cyan-500 h-full w-[60%]"></div></div>
+                <div class="grid grid-cols-2 gap-2 text-center text-xs"><div class="bg-slate-950 p-2 rounded-xl border border-slate-800/50"><p class="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Creator</p><p class="text-base font-black text-purple-400 mt-0.5">40%</p></div><div class="bg-slate-950 p-2 rounded-xl border border-slate-800/50"><p class="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Platform</p><p class="text-base font-black text-cyan-400 mt-0.5">60%</p></div></div>
+                <button onclick="applyMonetization()" class="w-full bg-gradient-to-r from-purple-600 to-cyan-500 py-2.5 rounded-xl font-black text-xs uppercase tracking-wider shadow-md shadow-cyan-500/10 active:scale-95 transition-all">Turn On Monetization</button>
+            </div>
+        </div>
+    </main>
 
-<div class="container">
-    <h2>AI ভিডিও অ্যাপ বিল্ডার</h2>
-    <p>আপনার মনের মতো ভিডিও অ্যাপের প্রম্পট লিখুন এবং ওয়ান-ক্লিক ফি দিয়ে অ্যাপ ডাউনলোড করুন।</p>
-    
-    <div id="step-1">
-        <input type="email" id="email" placeholder="আপনার ইমেইল অ্যাড্রেস দিন" required>
-        <textarea id="prompt" rows="4" placeholder="যেমন: Create a short video app like TikTok with orange theme..."></textarea>
-        <button onclick="initiateApp()">অ্যাপ তৈরি শুরু করুন</button>
+    <!-- REAL-TIME MODALS ENGINE -->
+    <div id="regModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-purple-500/40 w-full max-w-sm p-5 rounded-2xl space-y-3 shadow-2xl">
+            <h3 class="text-base font-black text-purple-400 tracking-wide">👤 IDENTITY VERIFICATION</h3>
+            <div class="space-y-2 text-xs">
+                <input type="text" id="regName" placeholder="Full Name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-white focus:outline-none focus:border-purple-500">
+                <input type="text" id="regAddr" placeholder="Physical Address" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-white focus:outline-none focus:border-purple-500">
+                <input type="email" id="regEmail" placeholder="Gmail Address" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-white focus:outline-none focus:border-purple-500">
+                <input type="text" id="regPhone" placeholder="Mobile Number" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-white focus:outline-none focus:border-purple-500">
+                <input type="number" id="regAge" placeholder="Current Age (Must be 18+)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-white focus:outline-none focus:border-purple-500">
+            </div>
+            <div class="flex gap-2 text-xs pt-1"><button onclick="toggleModal('regModal', false)" class="flex-1 bg-slate-800 py-2 rounded-xl font-bold">Cancel</button><button onclick="submitRegistration()" class="flex-1 bg-purple-600 py-2 rounded-xl font-bold shadow-md shadow-purple-600/20">Verify Securely</button></div>
+        </div>
     </div>
 
-    <!-- পেমেন্ট গেটওয়ে বক্স -->
-    <div id="payment-box" class="payment-box">
-        <h3 style="color:#f43f5e; margin-top:0;">💳 পেমেন্ট প্রয়োজন (৫০০ টাকা)</h3>
-        <p>আপনার অ্যাপটি ব্যাকএন্ডে তৈরি করা হয়েছে। লিংক আনলক করতে নিচের নম্বরে টাকা পাঠান:</p>
-        <p><b>বিকাশ / নগদ (Personal):</b> 01XXXXXXXXX</p>
-        <p>টাকা পাঠানোর পর নিচের বক্সে ট্রানজেকশন আইডি (TrxID) দিন:</p>
-        <input type="text" id="trxid" placeholder="Transaction ID (TrxID) দিন">
-        <button onclick="verifyPayment()" style="background:#e11d48;">পেমেন্ট নিশ্চিত করুন</button>
+    <div id="shareModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-sm p-5 rounded-2xl space-y-3 text-center shadow-2xl">
+            <h3 class="text-sm font-bold text-cyan-400 tracking-wide">🔗 SHARE APP & DOWNLOAD LINK</h3>
+            <p class="text-[11px] text-slate-400">Share this official live network production URL with your audience:</p>
+            <input type="text" readonly id="shareLink" value="https://github.io" class="w-full bg-slate-950 border border-slate-800 text-center font-mono rounded-xl p-2 text-xs text-cyan-300 focus:outline-none">
+            <div class="flex gap-2 text-xs pt-1"><button onclick="toggleModal('shareModal', false)" class="flex-1 bg-slate-800 py-2 rounded-xl font-bold">Close</button><button onclick="copyShareLink()" class="flex-1 bg-cyan-600 py-2 rounded-xl font-bold active:scale-95 transition-all">Copy Link</button></div>
+        </div>
     </div>
 
-    <!-- সাফল্য এবং ডাউনলোড বক্স -->
-    <div id="success-box" class="success-box">
-        <h3>🎉 অভিনন্দন! অ্যাপ তৈরি সফল হয়েছে</h3>
-        <p>আপনার ওয়ান-টাইম অ্যাপের লাইভ লিংক নিচে দেওয়া হলো (লিংকটি একবারই ব্যবহার করা যাবে):</p>
-        <a id="download-link" href="#" target="_blank" class="live-btn">লাইভ প্রিভিউ ও ডাউনলোড করুন</a>
+    <div id="reportModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-red-900/60 w-full max-w-sm p-5 rounded-2xl space-y-3 shadow-2xl">
+            <h3 class="text-base font-bold text-red-400 tracking-wide">⚠️ POLICY VIOLATION REPORT</h3>
+            <select id="repReason" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2 text-xs focus:outline-none focus:border-red-500"><option value="Copyright Infringement / Plagiarism">Copyright Infringement / Plagiarism</option><option value="Inappropriate Content / Abuse">Inappropriate Content / Abuse</option></select>
+            <div class="flex gap-2 text-xs pt-1"><button onclick="toggleModal('reportModal', false)" class="flex-1 bg-slate-800 py-2 rounded-xl font-bold">Cancel</button><button onclick="submitContentReport()" class="flex-1 bg-red-600 py-2 rounded-xl font-bold shadow-md shadow-red-600/20">Submit Report</button></div>
+        </div>
     </div>
-</div>
 
-<script>
-    let currentAppId = "";
-    const BACKEND_URL = "https://your-server-url.com"; // ভবিষ্যতে হোস্টিং লিংক এখানে বসবে
-
-    async function initiateApp() {
-        const email = document.getElementById('email').value;
-        const prompt = document.getElementById('prompt').value;
-        if(!email || !prompt) return alert("দয়া করে ইমেইল এবং প্রম্পট দুটিই লিখুন!");
-
-        // ব্যাকএন্ডে রিকোয়েস্ট পাঠানো
-        document.getElementById('payment-box').style.display = 'block';
-        currentAppId = "app_" + Math.random().toString(16).slice(2,10); // টেস্ট আইডি
-    }
-
-    async function verifyPayment() {
-        const trxid = document.getElementById('trxid').value;
-        if(!trxid || trxid.length < 6) return alert("সঠিক ট্রানজেকশন আইডি দিন!");
-
-        document.getElementById('payment-box').style.display = 'none';
-        document.getElementById('step-1').style.display = 'none';
-        document.getElementById('success-box').style.display = 'block';
-        document.getElementById('download-link').href = BACKEND_URL + "/static/" + currentAppId + ".html";
-    }
-</script>
-
-</body>
-</html>
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-sm p-5 rounded-2xl space-y-3 shadow-2xl">
+            <h3 class="text-base font-bold text-amber-400 tracking-wide">🛠️ OWNER CONTROL PANEL</h3>
+            <div id="adminLoginArea" class="space-y-2">
